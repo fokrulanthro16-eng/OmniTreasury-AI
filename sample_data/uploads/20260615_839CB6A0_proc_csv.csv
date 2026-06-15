@@ -1,0 +1,3 @@
+payment_id,source_entity,source_currency,amount,counterparty_name
+PAY-001,CORP-HQ,USD,5000.00,Vendor A
+PAY-002,CORP-HQ,EUR,3000.00,Vendor B

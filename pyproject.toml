@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omnitreasury-ai"
+version = "0.1.0"
+description = "Autonomous Treasury Control Tower — UiPath AgentHack 2026"
+requires-python = ">=3.11"
+readme = "README.md"
+
+[project.scripts]
+omnitreasury = "main:cli"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+log_cli = true
+log_cli_level = "INFO"
+addopts = "--cov=src --cov-report=term-missing"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]

@@ -1,0 +1,1 @@
+"""OmniTreasury AI test suite."""

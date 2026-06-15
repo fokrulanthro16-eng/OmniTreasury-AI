@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniTreasury AI — Data Upload Center Demo</title>
+<style>
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f1629;
+  --bg-card: #141c30;
+  --border: #1e2d4a;
+  --border-bright: #2a4080;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+  --accent-yellow: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg-primary); color:var(--text-primary); padding:32px; }
+h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
+.sub { color:var(--text-muted); font-size:13px; margin-bottom:28px; }
+.badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+.badge.green { background:rgba(16,185,129,0.15); color:var(--accent-green); border:1px solid rgba(16,185,129,0.3); }
+.badge.blue  { background:rgba(59,130,246,0.15);  color:var(--accent-blue);  border:1px solid rgba(59,130,246,0.3); }
+.badge.yellow{ background:rgba(245,158,11,0.15); color:var(--accent-yellow); border:1px solid rgba(245,158,11,0.3); }
+.badge.red   { background:rgba(239,68,68,0.15);   color:var(--accent-red);   border:1px solid rgba(239,68,68,0.3); }
+.badge.gray  { background:rgba(100,116,139,0.15); color:var(--text-muted);   border:1px solid rgba(100,116,139,0.3); }
+.card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+.kpi-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; position:relative; overflow:hidden; }
+.kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+.kpi-card.blue::before  { background:linear-gradient(90deg,var(--accent-blue),var(--accent-cyan)); }
+.kpi-card.green::before { background:linear-gradient(90deg,var(--accent-green),#34d399); }
+.kpi-card.yellow::before{ background:linear-gradient(90deg,var(--accent-yellow),#fbbf24); }
+.kpi-card.purple::before{ background:linear-gradient(90deg,var(--accent-purple),#a78bfa); }
+.kpi-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
+.kpi-value { font-size:30px; font-weight:700; line-height:1; margin-bottom:4px; }
+.kpi-card.blue .kpi-value  { color:var(--accent-blue); }
+.kpi-card.green .kpi-value { color:var(--accent-green); }
+.kpi-card.yellow .kpi-value{ color:var(--accent-yellow); }
+.kpi-card.purple .kpi-value{ color:var(--accent-purple); }
+.kpi-sub { font-size:11px; color:var(--text-muted); }
+.two-col { display:grid; grid-template-columns:1fr 1.6fr; gap:20px; }
+.section-title { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.section-title::before { content:''; display:block; width:3px; height:14px; background:var(--accent-blue); border-radius:2px; }
+/* Drop zone */
+.drop-zone { border:2px dashed var(--border-bright); border-radius:14px; padding:40px 24px; text-align:center; background:rgba(59,130,246,0.04); margin-bottom:16px; }
+.drop-icon { font-size:36px; margin-bottom:12px; display:block; filter:drop-shadow(0 0 12px rgba(59,130,246,0.4)); }
+.drop-title { font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:6px; }
+.drop-sub { font-size:12px; color:var(--text-muted); margin-bottom:14px; }
+.file-type-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+.pill { display:inline-flex; align-items:center; gap:5px; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:700; border:1px solid; }
+.pill-swift { color:#06b6d4; border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.08); }
+.pill-csv   { color:#10b981; border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.08); }
+.pill-json  { color:#f59e0b; border-color:rgba(245,158,11,0.4);  background:rgba(245,158,11,0.08); }
+.pill-pdf   { color:#ef4444; border-color:rgba(239,68,68,0.4);  background:rgba(239,68,68,0.08); }
+.browse-btn { display:inline-flex; align-items:center; gap:8px; padding:9px 22px; background:linear-gradient(135deg,#3b82f6,#2563eb); color:white; border:none; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
+/* Progress */
+.progress-wrap { background:var(--bg-card); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:14px; margin-bottom:14px; }
+.progress-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.progress-name { font-size:13px; font-weight:700; display:flex; align-items:center; gap:6px; }
+.progress-pct { font-size:13px; font-weight:700; color:var(--accent-blue); }
+.progress-track { height:8px; background:rgba(255,255,255,0.06); border-radius:6px; overflow:hidden; margin-bottom:6px; }
+.progress-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,#3b82f6,#06b6d4); box-shadow:0 0 10px rgba(59,130,246,0.5); }
+.progress-msg { font-size:11px; color:var(--accent-green); }
+/* Success flash */
+.success-flash { display:flex; align-items:center; gap:10px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:12px 16px; margin-bottom:14px; font-size:12px; font-weight:600; color:var(--accent-green); }
+/* Preview panel */
+.preview-panel { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.preview-hdr { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--border); background:rgba(255,255,255,0.02); }
+.preview-hdr-title { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); }
+.preview-body { padding:16px; }
+.meta-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px; }
+.meta-item { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px; }
+.meta-label { font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:3px; }
+.meta-value { font-size:13px; font-weight:700; }
+/* History table */
+.history-wrap { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.history-hdr { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--border); }
+.history-hdr-title { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); }
+.data-table { width:100%; border-collapse:collapse; font-size:12px; }
+.data-table th { text-align:left; padding:8px 12px; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:1px solid var(--border); }
+.data-table td { padding:10px 12px; border-bottom:1px solid rgba(30,45,74,0.5); color:var(--text-secondary); }
+.data-table tr:last-child td { border-bottom:none; }
+.data-table tr:hover td { background:rgba(255,255,255,0.02); color:var(--text-primary); }
+.status-bar { display:flex; align-items:center; justify-content:space-between; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:10px 16px; margin-bottom:20px; font-size:12px; }
+.dot-yellow { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-yellow); margin-right:6px; }
+::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:var(--bg-primary); } ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<h1>📤 Data Upload Center</h1>
+<div class="sub">OmniTreasury AI · Ingest SWIFT MT103, CSV, JSON, PDF · Demo Screenshot · June 2026</div>
+
+<!-- Status bar -->
+<div class="status-bar">
+  <div style="display:flex;align-items:center;gap:8px;font-weight:600;color:var(--accent-yellow)">
+    <span class="dot-yellow"></span>
+    Demo Mode — Python server offline · Start with: <code style="background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;font-size:11px">python -m src.upload.upload_server</code>
+  </div>
+  <div style="display:flex;gap:20px;font-size:11px;color:var(--text-muted)">
+    <span>📁 <strong style="color:var(--text-primary)">4</strong> files</span>
+    <span>📊 <strong style="color:var(--text-primary)">287.4 KB</strong></span>
+    <span>🕐 Last: <strong style="color:var(--text-primary)">07:42 UTC</strong></span>
+  </div>
+</div>
+
+<!-- KPI row -->
+<div class="kpi-grid">
+  <div class="kpi-card blue">
+    <div class="kpi-label">Files Uploaded</div>
+    <div class="kpi-value">4</div>
+    <div class="kpi-sub">This session</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="kpi-label">Successfully Processed</div>
+    <div class="kpi-value">4</div>
+    <div class="kpi-sub">0 errors</div>
+  </div>
+  <div class="kpi-card yellow">
+    <div class="kpi-label">Records Ingested</div>
+    <div class="kpi-value">16</div>
+    <div class="kpi-sub">Across all files</div>
+  </div>
+  <div class="kpi-card purple">
+    <div class="kpi-label">Total Value</div>
+    <div class="kpi-value">$4.5M</div>
+    <div class="kpi-sub">Payment records</div>
+  </div>
+</div>
+
+<div class="two-col">
+  <!-- LEFT -->
+  <div>
+    <!-- File type tabs -->
+    <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
+      <div style="padding:6px 14px;border-radius:20px;border:1px solid #3b82f6;background:rgba(59,130,246,0.1);font-size:11px;font-weight:700;color:#3b82f6">All Types</div>
+      <div style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);font-size:11px;font-weight:600;color:var(--text-secondary)">SWIFT MT103</div>
+      <div style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);font-size:11px;font-weight:600;color:var(--text-secondary)">CSV Batch</div>
+      <div style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);font-size:11px;font-weight:600;color:var(--text-secondary)">JSON</div>
+      <div style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);font-size:11px;font-weight:600;color:var(--text-secondary)">PDF</div>
+    </div>
+
+    <!-- Drop zone -->
+    <div class="drop-zone">
+      <span class="drop-icon">📤</span>
+      <div class="drop-title">Drag & drop files here</div>
+      <div class="drop-sub">or click to browse · Maximum 50 MB per file</div>
+      <div class="file-type-pills">
+        <span class="pill pill-swift">SWIFT MT103 .txt</span>
+        <span class="pill pill-csv">CSV Batch .csv</span>
+        <span class="pill pill-json">JSON Payment .json</span>
+        <span class="pill pill-pdf">PDF Document .pdf</span>
+      </div>
+      <button class="browse-btn">⬆ Browse Files</button>
+    </div>
+
+    <!-- Progress (shown mid-upload) -->
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <div class="progress-name">📊 batch_payments_june_demo.csv</div>
+        <span class="progress-pct">65%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:65%"></div>
+      </div>
+      <div class="progress-msg">Parsing CSV rows and extracting payment metadata…</div>
+    </div>
+
+    <!-- Success flash -->
+    <div class="success-flash">
+      ✓ &nbsp;<strong>sample_swift_mt103_demo.txt</strong> uploaded successfully · SWIFT MT103 · 512 B
+    </div>
+
+    <!-- Preview panel -->
+    <div class="preview-panel">
+      <div class="preview-hdr">
+        <div class="preview-hdr-title">📨 FILE PREVIEW — <span style="color:var(--text-primary)">sample_swift_mt103_demo.txt</span></div>
+        <span class="badge blue">SWIFT MT103</span>
+      </div>
+      <div class="preview-body">
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-label">File Type</div>
+            <div class="meta-value" style="color:var(--accent-cyan)">SWIFT MT103</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Size</div>
+            <div class="meta-value">512 B</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Status</div>
+            <div class="meta-value" style="color:var(--accent-green)">✓ Processed</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+          <div><span style="color:var(--text-muted)">Ref: </span><strong>TXN-2026-DEMO-001</strong></div>
+          <div><span style="color:var(--text-muted)">Currency: </span><strong style="color:var(--accent-cyan)">USD</strong></div>
+          <div><span style="color:var(--text-muted)">Amount: </span><strong style="color:var(--accent-green)">$50,000.00</strong></div>
+          <div><span style="color:var(--text-muted)">Value Date: </span><strong>2026-06-17</strong></div>
+          <div><span style="color:var(--text-muted)">Charges: </span><strong>SHA</strong></div>
+          <div><span style="color:var(--text-muted)">Fields: </span><strong>10</strong></div>
+        </div>
+        <div style="margin-top:12px;overflow-x:auto">
+          <table class="data-table">
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--accent-cyan);font-weight:700">:20:</td><td>TXN-2026-DEMO-001</td></tr>
+              <tr><td style="color:var(--accent-cyan);font-weight:700">:23B:</td><td>CRED</td></tr>
+              <tr><td style="color:var(--accent-cyan);font-weight:700">:32A:</td><td>260617USD50000,00</td></tr>
+              <tr><td style="color:var(--accent-cyan);font-weight:700">:71A:</td><td>SHA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: History table -->
+  <div>
+    <div class="history-wrap">
+      <div class="history-hdr">
+        <div class="history-hdr-title">📋 Recently Uploaded Files</div>
+        <div style="display:flex;gap:8px">
+          <button style="font-size:11px;padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);cursor:pointer">↻ Refresh</button>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Filename</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Uploaded By</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(59,130,246,0.04)">
+            <td>
+              <span style="margin-right:6px">📨</span>
+              <strong style="color:var(--text-primary)">sample_swift_mt103_demo.txt</strong>
+              <div style="font-size:9px;color:var(--text-muted);margin-top:2px;font-family:monospace">ID: F4A2C891</div>
+            </td>
+            <td><span class="badge blue">SWIFT MT103</span></td>
+            <td style="color:var(--text-muted);font-size:11px">512 B</td>
+            <td style="font-size:11px;color:var(--text-secondary)">treasury</td>
+            <td style="font-size:11px;font-family:monospace;color:var(--text-muted)">07:42 UTC</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+          <!-- Expanded preview row -->
+          <tr>
+            <td colspan="6" style="padding:0;border-bottom:1px solid var(--border)">
+              <div style="padding:12px 16px;background:rgba(59,130,246,0.04);border-top:1px solid rgba(59,130,246,0.15);font-size:11px;display:flex;gap:24px">
+                <div><span style="color:var(--text-muted)">Ref: </span><strong>TXN-2026-DEMO-001</strong></div>
+                <div><span style="color:var(--text-muted)">CCY: </span><strong style="color:var(--accent-cyan)">USD</strong></div>
+                <div><span style="color:var(--text-muted)">Amount: </span><strong style="color:var(--accent-green)">$50,000</strong></div>
+                <div><span style="color:var(--text-muted)">Date: </span><strong>2026-06-17</strong></div>
+                <div><span style="color:var(--text-muted)">Charges: </span><strong>SHA</strong></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style="margin-right:6px">📊</span>
+              <strong style="color:var(--text-primary)">batch_payments_june_demo.csv</strong>
+              <div style="font-size:9px;color:var(--text-muted);margin-top:2px;font-family:monospace">ID: B7D3E156</div>
+            </td>
+            <td><span class="badge green">CSV Batch</span></td>
+            <td style="color:var(--text-muted);font-size:11px">1.0 KB</td>
+            <td style="font-size:11px;color:var(--text-secondary)">emea.ops</td>
+            <td style="font-size:11px;font-family:monospace;color:var(--text-muted)">07:38 UTC</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span style="margin-right:6px">📋</span>
+              <strong style="color:var(--text-primary)">treasury_payments_q2_demo.json</strong>
+              <div style="font-size:9px;color:var(--text-muted);margin-top:2px;font-family:monospace">ID: A1C9F024</div>
+            </td>
+            <td><span class="badge yellow">JSON Payment</span></td>
+            <td style="color:var(--text-muted);font-size:11px">1.8 KB</td>
+            <td style="font-size:11px;color:var(--text-secondary)">cfo</td>
+            <td style="font-size:11px;font-family:monospace;color:var(--text-muted)">07:31 UTC</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span style="margin-right:6px">📄</span>
+              <strong style="color:var(--text-primary)">board_treasury_report_june2026.pdf</strong>
+              <div style="font-size:9px;color:var(--text-muted);margin-top:2px;font-family:monospace">ID: D5E8B312</div>
+            </td>
+            <td><span class="badge red">PDF Document</span></td>
+            <td style="color:var(--text-muted);font-size:11px">278.0 KB</td>
+            <td style="font-size:11px;color:var(--text-secondary)">cfo</td>
+            <td style="font-size:11px;font-family:monospace;color:var(--text-muted)">07:18 UTC</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Instructions card -->
+    <div class="card" style="margin-top:16px">
+      <div class="section-title">Upload Instructions for Judges</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px">1️⃣</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:2px">Open the Dashboard</div>
+            <div style="font-size:11px;color:var(--text-muted)">Open <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px">demo_output/treasury_control_tower.html</code> in any browser</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px">2️⃣</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:2px">Navigate to Data Upload Center</div>
+            <div style="font-size:11px;color:var(--text-muted)">Click "📤 Data Upload Center" in the sidebar — pre-populated history shown immediately</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px">3️⃣</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:2px">Drag & Drop Any File</div>
+            <div style="font-size:11px;color:var(--text-muted)">Use files from <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px">sample_data/uploads/</code> or <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px">sample_data/swift_samples/</code></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:18px">4️⃣</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:2px">Optional: Real Saves</div>
+            <div style="font-size:11px;color:var(--text-muted)">Run <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px">python -m src.upload.upload_server</code> to enable real file persistence to disk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

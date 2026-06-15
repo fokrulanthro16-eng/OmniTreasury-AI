@@ -1,0 +1,117 @@
+{
+  "_comment": "SYNTHETIC DATA — represents mock ERP cash positions for demo entities",
+  "as_of": "2026-06-14T07:00:00Z",
+  "positions": {
+    "CORP-HQ:EUR": {
+      "entity": "CORP-HQ",
+      "account_id": "DE89370400440532013000",
+      "currency": "EUR",
+      "available_balance": 2850000,
+      "total_balance": 3200000,
+      "covenant_minimum": 500000
+    },
+    "CORP-HQ:USD": {
+      "entity": "CORP-HQ",
+      "account_id": "US0900040012345678",
+      "currency": "USD",
+      "available_balance": 1420000,
+      "total_balance": 1500000,
+      "covenant_minimum": 200000
+    },
+    "CORP-HQ:GBP": {
+      "entity": "CORP-HQ",
+      "account_id": "GB29NWBK60161331926819",
+      "currency": "GBP",
+      "available_balance": 180000,
+      "total_balance": 200000,
+      "covenant_minimum": 50000
+    },
+    "CORP-EMEA:EUR": {
+      "entity": "CORP-EMEA",
+      "account_id": "FR7630006000011234567890189",
+      "currency": "EUR",
+      "available_balance": 7500000,
+      "total_balance": 8000000,
+      "covenant_minimum": 1000000
+    },
+    "CORP-EMEA:GBP": {
+      "entity": "CORP-EMEA",
+      "account_id": "GB91BARC20714383608987",
+      "currency": "GBP",
+      "available_balance": 3100000,
+      "total_balance": 3500000,
+      "covenant_minimum": 400000
+    },
+    "CORP-APAC:USD": {
+      "entity": "CORP-APAC",
+      "account_id": "SG0600201234567890",
+      "currency": "USD",
+      "available_balance": 920000,
+      "total_balance": 1000000,
+      "covenant_minimum": 150000
+    },
+    "CORP-APAC:SGD": {
+      "entity": "CORP-APAC",
+      "account_id": "SG0600201234567891",
+      "currency": "SGD",
+      "available_balance": 450000,
+      "total_balance": 500000,
+      "covenant_minimum": 50000
+    },
+    "CORP-LATAM:USD": {
+      "entity": "CORP-LATAM",
+      "account_id": "BR9700360305000010009795493P1",
+      "currency": "USD",
+      "available_balance": 85000,
+      "total_balance": 100000,
+      "covenant_minimum": 50000
+    }
+  },
+  "netting_candidates": [
+    {
+      "payment_id": "INT-PAY-2024-001",
+      "counterparty": "LONDON SUBSIDIARY LTD",
+      "currency": "GBP",
+      "amount": 280000,
+      "is_internal": true,
+      "description": "Offsetting intercompany receivable from UK subsidiary"
+    },
+    {
+      "payment_id": "INT-PAY-2024-002",
+      "counterparty": "CORP-EMEA",
+      "currency": "EUR",
+      "amount": 500000,
+      "is_internal": true,
+      "description": "Intercompany management fee receivable from EMEA entity"
+    }
+  ],
+  "funding_sources": [
+    {
+      "entity": "CORP-EMEA",
+      "account_id": "FR7630006000011234567890189",
+      "currency": "EUR",
+      "available": 5000000,
+      "type": "INTERCOMPANY_LOAN",
+      "cost_usd": 500,
+      "description": "EMEA treasury intercompany revolving facility — 3-month term"
+    },
+    {
+      "entity": "CORP-EMEA",
+      "account_id": "GB91BARC20714383608987",
+      "currency": "GBP",
+      "available": 2000000,
+      "type": "INTERCOMPANY_LOAN",
+      "cost_usd": 350,
+      "description": "EMEA GBP intercompany facility"
+    },
+    {
+      "entity": "CORP-HQ",
+      "account_id": "CREDIT-LINE-001",
+      "currency": "USD",
+      "available": 10000000,
+      "type": "REVOLVING_CREDIT_FACILITY",
+      "cost_usd": 2500,
+      "description": "Syndicated RCF — Barclays / JPM / Deutsche — USD 50M facility"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+payment_id,source_entity,source_currency,amount,target_currency,counterparty_name,bank_country,value_date,purpose,urgency,submitted_by
+PAY-BATCH-001,CORP-HQ,EUR,75000.00,USD,Acme Supplies GmbH,DE,2026-06-18,TRADE_PAYMENT,T_PLUS_2,treasury@nexusglobal.com
+PAY-BATCH-002,CORP-EMEA,GBP,120000.00,USD,London Tech Partners Ltd,GB,2026-06-18,SERVICES,T_PLUS_2,emea.ops@nexusglobal.com
+PAY-BATCH-003,CORP-APAC,SGD,35000.00,USD,Nexus Global Corporation,US,2026-06-17,DIVIDEND,T_PLUS_2,cfo.apac@nexusglobal.com
+PAY-BATCH-004,CORP-HQ,USD,250000.00,EUR,Berlin Industrial KG,DE,2026-06-19,TRADE_PAYMENT,T_PLUS_2,procurement@nexusglobal.com
+PAY-BATCH-005,CORP-EMEA,EUR,45000.00,GBP,Edinburgh Logistics Ltd,GB,2026-06-18,TRADE_PAYMENT,T_PLUS_1,emea.ops@nexusglobal.com
+PAY-BATCH-006,CORP-HQ,USD,890000.00,JPY,Tokyo Components Corp,JP,2026-06-20,TRADE_PAYMENT,FLEXIBLE,japan.ops@nexusglobal.com
+PAY-BATCH-007,CORP-LATAM,USD,18500.00,BRL,Sao Paulo Distributors SA,BR,2026-06-19,TRADE_PAYMENT,T_PLUS_2,latam.ops@nexusglobal.com
+PAY-BATCH-008,CORP-APAC,USD,62000.00,SGD,SingTech Holdings Pte,SG,2026-06-18,SERVICES,T_PLUS_2,apac.ops@nexusglobal.com

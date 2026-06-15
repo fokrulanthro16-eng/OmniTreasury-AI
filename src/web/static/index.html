@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniTreasury AI — Web Application</title>
+<style>
+:root {
+  --bg:       #0a0e1a;
+  --bg2:      #0f1629;
+  --card:     #141c30;
+  --border:   #1e2d4a;
+  --border2:  #2a4080;
+  --blue:     #3b82f6;
+  --cyan:     #06b6d4;
+  --green:    #10b981;
+  --yellow:   #f59e0b;
+  --red:      #ef4444;
+  --purple:   #8b5cf6;
+  --orange:   #f97316;
+  --tx:       #e2e8f0;
+  --tx2:      #94a3b8;
+  --muted:    #475569;
+  --gblue:    0 0 20px rgba(59,130,246,.3);
+  --ggreen:   0 0 20px rgba(16,185,129,.3);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
+
+/* ── Sidebar ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:224px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100}
+.sidebar-logo{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
+.brand{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase}
+.brand-sub{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.08em}
+.live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:6px;box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-group{padding:14px 10px 6px}
+.nav-label{font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;padding:0 10px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;color:var(--tx2);margin-bottom:2px;border:1px solid transparent;user-select:none;text-decoration:none}
+.nav-item:hover{background:var(--card);color:var(--tx);border-color:var(--border)}
+.nav-item.active{background:rgba(59,130,246,.12);color:var(--blue);border-color:rgba(59,130,246,.3)}
+.nav-icon{font-size:15px;width:18px;text-align:center}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:700;background:var(--red);color:#fff;border-radius:10px;padding:1px 6px;min-width:18px;text-align:center}
+.nav-badge.g{background:var(--green)}
+.sidebar-foot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);line-height:1.6}
+.api-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.api-status-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.api-status-dot.err{background:var(--yellow)}
+
+/* ── Main ── */
+.main{margin-left:224px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-size:16px;font-weight:600}
+.topbar-right{display:flex;align-items:center;gap:14px}
+.clock{font-size:12px;color:var(--muted);font-family:'Courier New',monospace}
+.chip{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;border:1px solid}
+.chip.online{color:var(--green);border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.08)}
+.chip.offline{color:var(--yellow);border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
+.content{padding:28px;flex:1}
+
+/* ── Pages ── */
+.page{display:none}.page.active{display:block}
+.page-header{margin-bottom:24px}
+.page-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.page-desc{font-size:13px;color:var(--muted)}
+
+/* ── KPI grid ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden;transition:all .2s}
+.kpi:hover{border-color:var(--border2);transform:translateY(-1px)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi.b::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.kpi.g::before{background:linear-gradient(90deg,var(--green),#34d399)}
+.kpi.y::before{background:linear-gradient(90deg,var(--yellow),#fbbf24)}
+.kpi.p::before{background:linear-gradient(90deg,var(--purple),#a78bfa)}
+.kpi-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.kpi-val{font-size:32px;font-weight:800;line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.kpi.b .kpi-val{color:var(--blue)}.kpi.g .kpi-val{color:var(--green)}.kpi.y .kpi-val{color:var(--yellow)}.kpi.p .kpi-val{color:var(--purple)}
+.kpi-sub{font-size:11px;color:var(--muted)}
+
+/* ── Cards ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.card+.card{margin-top:16px}
+.sec-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.sec-title::before{content:'';display:block;width:3px;height:14px;background:var(--blue);border-radius:2px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.col-4-6{display:grid;grid-template-columns:4fr 6fr;gap:20px}
+
+/* ── File type tabs ── */
+.ftabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.ftab{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--card);font-size:11px;font-weight:600;color:var(--tx2);cursor:pointer;transition:all .15s;user-select:none}
+.ftab:hover{border-color:var(--border2);color:var(--tx)}
+.ftab.active{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.1)}
+.ftab .td{width:6px;height:6px;border-radius:50%}
+
+/* ── Drop zone ── */
+.drop-zone{border:2px dashed var(--border2);border-radius:14px;padding:42px 24px;text-align:center;background:rgba(59,130,246,.03);transition:all .2s;cursor:pointer;margin-bottom:18px;user-select:none}
+.drop-zone:hover,.drop-zone.over{border-color:var(--blue);background:rgba(59,130,246,.07);box-shadow:var(--gblue)}
+.drop-zone.over{transform:scale(1.01)}
+.dz-icon{font-size:38px;display:block;margin-bottom:12px;filter:drop-shadow(0 0 12px rgba(59,130,246,.5))}
+.dz-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.dz-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid}
+.pill-s{color:#06b6d4;border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.08)}
+.pill-c{color:#10b981;border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.08)}
+.pill-j{color:#f59e0b;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
+.pill-p{color:#ef4444;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.08)}
+.browse-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 22px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.04em}
+.browse-btn:hover{background:linear-gradient(135deg,#60a5fa,#3b82f6);transform:translateY(-1px);box-shadow:var(--gblue)}
+#file-input{display:none}
+
+/* ── Progress ── */
+.prog-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px;display:none}
+.prog-wrap.show{display:block}
+.prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-name{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.prog-pct{font-size:13px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+.prog-track{height:8px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden;margin-bottom:6px}
+.prog-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--cyan));box-shadow:0 0 10px rgba(59,130,246,.5);transition:width .15s linear}
+.prog-msg{font-size:11px;color:var(--muted)}
+
+/* ── Flash ── */
+.flash{display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:10px;margin-bottom:14px;font-size:12px;font-weight:600;display:none}
+.flash.show{display:flex}
+.flash.ok{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:var(--green)}
+.flash.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red)}
+.flash.warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--yellow)}
+
+/* ── Table ── */
+.data-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.data-tbl th{text-align:left;padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.data-tbl td{padding:10px 12px;border-bottom:1px solid rgba(30,45,74,.5);color:var(--tx2);font-variant-numeric:tabular-nums}
+.data-tbl tr:last-child td{border-bottom:none}
+.data-tbl tr:hover td{background:rgba(255,255,255,.02);color:var(--tx);cursor:pointer}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.badge.g{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.badge.r{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.badge.y{background:rgba(245,158,11,.15);color:var(--yellow);border:1px solid rgba(245,158,11,.3)}
+.badge.b{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
+.badge.p{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3)}
+.badge.gr{background:rgba(100,116,139,.15);color:var(--muted);border:1px solid rgba(100,116,139,.3)}
+
+/* ── Process btn ── */
+.proc-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.35);border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s}
+.proc-btn:hover{background:rgba(59,130,246,.22);border-color:var(--blue)}
+.proc-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── Result panel ── */
+.result-wrap{display:none;margin-top:20px}
+.result-wrap.show{display:block}
+
+.result-decision{border-radius:12px;padding:20px 22px;margin-bottom:18px;border:1px solid;position:relative;overflow:hidden}
+.result-decision.AUTO_EXECUTE{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.3)}
+.result-decision.ESCALATE{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.3)}
+.result-decision.HARD_REJECT{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3)}
+.result-decision.csv,.result-decision.json,.result-decision.pdf{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.3)}
+
+.decision-badge{font-size:22px;font-weight:900;letter-spacing:.04em;margin-bottom:4px}
+.AUTO_EXECUTE .decision-badge{color:var(--green)}
+.ESCALATE .decision-badge{color:var(--yellow)}
+.HARD_REJECT .decision-badge{color:var(--red)}
+.csv .decision-badge,.json .decision-badge,.pdf .decision-badge{color:var(--blue)}
+
+.decision-sub{font-size:12px;color:var(--tx2);margin-bottom:16px}
+
+.result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.rg-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:12px}
+.rg-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.rg-val{font-size:14px;font-weight:800}
+
+.detail-section{margin-bottom:16px}
+.detail-section h4{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.kv{display:flex;flex-direction:column;gap:1px}
+.kv-k{font-size:10px;color:var(--muted)}
+.kv-v{font-size:12px;font-weight:600;color:var(--tx)}
+
+/* pipeline steps */
+.steps{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.step{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+.step-icon{font-size:16px;width:24px;text-align:center;flex-shrink:0}
+.step-label{flex:1}
+.step-status{font-size:10px;font-weight:700;letter-spacing:.08em}
+.step.done .step-status{color:var(--green)}
+.step.running .step-status{color:var(--blue)}
+.step.wait .step-status{color:var(--muted)}
+
+/* JSON accordion */
+.json-toggle{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;margin-top:12px;padding:6px 0;border-top:1px solid var(--border)}
+.json-block{display:none;margin-top:8px;background:rgba(0,0,0,.25);border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:11px;color:#7dd3fc;overflow-x:auto;max-height:320px;overflow-y:auto;line-height:1.6}
+.json-block.show{display:block}
+
+/* preview table in results */
+.preview-tbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+.preview-tbl th{padding:5px 10px;background:rgba(255,255,255,.04);color:var(--muted);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)}
+.preview-tbl td{padding:6px 10px;border-bottom:1px solid rgba(30,45,74,.4);color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+
+/* ── Dashboard activity ── */
+.activity-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(30,45,74,.5)}
+.activity-item:last-child{border-bottom:none}
+.act-icon{font-size:18px;flex-shrink:0}
+.act-body{flex:1;min-width:0}
+.act-title{font-size:12px;font-weight:700;color:var(--tx);margin-bottom:2px}
+.act-sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act-time{font-size:10px;color:var(--muted);font-family:monospace;flex-shrink:0}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────────────────── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand"><span class="live-dot"></span>OmniTreasury AI</div>
+    <div class="brand-sub">REAL WEB APPLICATION · v1.0</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Application</div>
+    <div class="nav-item active" onclick="showPage('dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+    <div class="nav-item" onclick="showPage('upload')"><span class="nav-icon">📤</span>Upload Center<span class="nav-badge g" id="upload-count">0</span></div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Links</div>
+    <a class="nav-item" href="/api/docs" target="_blank"><span class="nav-icon">📖</span>API Docs (Swagger)</a>
+    <a class="nav-item" href="/api/redoc" target="_blank"><span class="nav-icon">📋</span>API Reference</a>
+    <a class="nav-item" href="../demo_output/treasury_control_tower.html" target="_blank"><span class="nav-icon">📊</span>Static Demo Pages</a>
+  </div>
+
+  <div class="sidebar-foot" id="sidebar-foot">
+    <span class="api-status-dot err" id="api-dot"></span>
+    <span id="api-status-text">Connecting…</span><br>
+    <span id="api-details" style="color:var(--muted)">http://localhost:8000</span>
+  </div>
+</nav>
+
+<!-- ── MAIN ────────────────────────────────────────────────────────────────── -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-title" id="topbar-title">Dashboard</div>
+    <div class="topbar-right">
+      <div class="clock" id="clock">—</div>
+      <div class="chip offline" id="conn-chip"><span>◉</span><span id="conn-text">Connecting…</span></div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ══════════ PAGE: DASHBOARD ══════════ -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="page-title">OmniTreasury AI</div>
+        <div class="page-desc">AI-powered treasury payment intelligence · Local web application · FastAPI + Uvicorn</div>
+      </div>
+
+      <div class="kpi-grid" id="dash-kpis">
+        <div class="kpi b"><div class="kpi-label">Total Uploads</div><div class="kpi-val" id="kpi-total">—</div><div class="kpi-sub">This session</div></div>
+        <div class="kpi g"><div class="kpi-label">Processed</div><div class="kpi-val" id="kpi-processed">—</div><div class="kpi-sub">Full pipeline runs</div></div>
+        <div class="kpi y"><div class="kpi-label">Auto-Executed</div><div class="kpi-val" id="kpi-auto">—</div><div class="kpi-sub">From SWIFT MT103 files</div></div>
+        <div class="kpi p"><div class="kpi-label">API Status</div><div class="kpi-val" id="kpi-api" style="font-size:18px">—</div><div class="kpi-sub" id="kpi-api-sub">—</div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="sec-title">📡 API Health</div>
+          <div id="health-body" style="font-size:12px;color:var(--tx2);line-height:1.8">
+            Checking…
+          </div>
+        </div>
+        <div class="card">
+          <div class="sec-title">⚡ Recent Activity</div>
+          <div id="activity-list">
+            <div style="font-size:12px;color:var(--muted);padding:10px 0">No uploads yet. <span style="color:var(--blue);cursor:pointer" onclick="showPage('upload')">Go to Upload Center →</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-title">🚀 Getting Started</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px">
+          <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">1️⃣</div>
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:4px">Upload a File</div>
+            <div style="font-size:11px;color:var(--muted)">Go to Upload Center and drag a SWIFT MT103 .txt file onto the drop zone.</div>
+            <div style="margin-top:12px"><span class="proc-btn" onclick="showPage('upload')" style="display:inline-flex">📤 Upload Center</span></div>
+          </div>
+          <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">2️⃣</div>
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:4px">Click Process</div>
+            <div style="font-size:11px;color:var(--muted)">Hit the Process button on any uploaded file to run the full AI pipeline: compliance, FX, liquidity, risk, decision.</div>
+          </div>
+          <div style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">3️⃣</div>
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:4px">See the Decision</div>
+            <div style="font-size:11px;color:var(--muted)">Get AUTO_EXECUTE, ESCALATE, or HARD_REJECT with full compliance, risk, FX, and liquidity breakdown.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: UPLOAD CENTER ══════════ -->
+    <div class="page" id="page-upload">
+      <div class="page-header">
+        <div class="page-title">Data Upload Center</div>
+        <div class="page-desc">Upload SWIFT MT103, CSV, JSON, and PDF files · Full AI pipeline processing · Files saved to sample_data/uploads/</div>
+      </div>
+
+      <div class="col-4-6">
+        <!-- LEFT: drop zone + progress + flash -->
+        <div>
+          <!-- File type tabs -->
+          <div class="ftabs" id="ftabs">
+            <div class="ftab active" onclick="filterTab(this,'all')"><div class="td" style="background:var(--tx2)"></div>All</div>
+            <div class="ftab" onclick="filterTab(this,'.txt')"><div class="td" style="background:var(--cyan)"></div>SWIFT MT103</div>
+            <div class="ftab" onclick="filterTab(this,'.csv')"><div class="td" style="background:var(--green)"></div>CSV</div>
+            <div class="ftab" onclick="filterTab(this,'.json')"><div class="td" style="background:var(--yellow)"></div>JSON</div>
+            <div class="ftab" onclick="filterTab(this,'.pdf')"><div class="td" style="background:var(--red)"></div>PDF</div>
+          </div>
+
+          <!-- Drop zone -->
+          <div class="drop-zone" id="drop-zone"
+               ondragover="ev(event)" ondragleave="evl(event)" ondrop="evd(event)"
+               onclick="document.getElementById('file-input').click()">
+            <span class="dz-icon">📤</span>
+            <div class="dz-title">Drag & drop your file here</div>
+            <div class="dz-sub">or click to browse · Max 50 MB</div>
+            <div class="pills">
+              <span class="pill pill-s">SWIFT MT103 .txt</span>
+              <span class="pill pill-c">CSV .csv</span>
+              <span class="pill pill-j">JSON .json</span>
+              <span class="pill pill-p">PDF .pdf</span>
+            </div>
+            <button class="browse-btn" onclick="event.stopPropagation();document.getElementById('file-input').click()">⬆ Browse Files</button>
+          </div>
+          <input type="file" id="file-input" accept=".txt,.csv,.json,.pdf" onchange="onFileChosen(this.files)">
+
+          <!-- Upload progress -->
+          <div class="prog-wrap" id="prog">
+            <div class="prog-header">
+              <div class="prog-name"><span id="prog-icon">📄</span><span id="prog-name">Uploading…</span></div>
+              <span class="prog-pct" id="prog-pct">0%</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+            <div class="prog-msg" id="prog-msg">Preparing…</div>
+          </div>
+
+          <!-- Flash -->
+          <div class="flash" id="flash"><span id="flash-icon">✓</span><span id="flash-msg"></span></div>
+
+          <!-- Quick-use files -->
+          <div class="card" style="margin-top:16px">
+            <div class="sec-title">📁 Demo Files to Try</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:11px">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.2);border-radius:7px">
+                <div>
+                  <div style="font-weight:700;color:var(--tx)">📨 sample_swift_mt103_demo.txt</div>
+                  <div style="color:var(--muted);margin-top:2px">sample_data/uploads/ · SWIFT MT103 · 410 B → runs full pipeline</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:7px">
+                <div>
+                  <div style="font-weight:700;color:var(--tx)">📊 batch_payments_june_demo.csv</div>
+                  <div style="color:var(--muted);margin-top:2px">sample_data/uploads/ · CSV · 8 records · $1.5M total</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:7px">
+                <div>
+                  <div style="font-weight:700;color:var(--tx)">📋 treasury_payments_q2_demo.json</div>
+                  <div style="color:var(--muted);margin-top:2px">sample_data/uploads/ · JSON · 4 payments · $2.99M total</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: uploads table + result panel -->
+        <div>
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div class="sec-title" style="margin-bottom:0">📋 Upload History</div>
+              <button class="proc-btn" onclick="loadUploads()">↻ Refresh</button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="data-tbl">
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Uploaded</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="uploads-tbody">
+                  <tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted)">No uploads yet. Drag a file above.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Processing result panel -->
+          <div class="result-wrap" id="result-wrap">
+            <div class="card">
+              <div class="sec-title">⚡ Processing Result</div>
+
+              <!-- Pipeline steps animation -->
+              <div class="steps" id="pipeline-steps">
+                <div class="step wait" id="step-parse"><span class="step-icon">📄</span><span class="step-label">Parsing document</span><span class="step-status">WAITING</span></div>
+                <div class="step wait" id="step-comp"><span class="step-icon">🛡</span><span class="step-label">Compliance & Sanctions Check</span><span class="step-status">WAITING</span></div>
+                <div class="step wait" id="step-fx"><span class="step-icon">💱</span><span class="step-label">FX Rate Optimisation</span><span class="step-status">WAITING</span></div>
+                <div class="step wait" id="step-liq"><span class="step-icon">💧</span><span class="step-label">Liquidity & Covenant Check</span><span class="step-status">WAITING</span></div>
+                <div class="step wait" id="step-risk"><span class="step-icon">📊</span><span class="step-label">Risk Intelligence Scoring</span><span class="step-status">WAITING</span></div>
+                <div class="step wait" id="step-dec"><span class="step-icon">⚡</span><span class="step-label">Decision Orchestration</span><span class="step-status">WAITING</span></div>
+              </div>
+
+              <!-- Final result (shown after pipeline completes) -->
+              <div id="final-result" style="display:none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+'use strict';
+
+// ── Constants & State ──────────────────────────────────────────────────────────
+const API   = '';  // same origin
+let uploads = [];
+let activeFilter = 'all';
+let processingId = null;
+
+// ── Clock ──────────────────────────────────────────────────────────────────────
+function tick() {
+  const n = new Date(), p = v => String(v).padStart(2,'0');
+  document.getElementById('clock').textContent =
+    `${n.getUTCFullYear()}-${p(n.getUTCMonth()+1)}-${p(n.getUTCDate())}  `+
+    `${p(n.getUTCHours())}:${p(n.getUTCMinutes())}:${p(n.getUTCSeconds())} UTC`;
+}
+tick(); setInterval(tick, 1000);
+
+// ── Page navigation ────────────────────────────────────────────────────────────
+const PAGE_TITLES = { dashboard:'Dashboard', upload:'Data Upload Center' };
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') === `showPage('${id}')`) n.classList.add('active');
+  });
+  document.getElementById('topbar-title').textContent = PAGE_TITLES[id] || id;
+}
+
+// ── Health check ───────────────────────────────────────────────────────────────
+async function checkHealth() {
+  try {
+    const r = await fetch(API + '/api/health', {signal: AbortSignal.timeout(3000)});
+    const d = await r.json();
+    if (d.status === 'ok') {
+      setOnline(d);
+      updateDashboard(d);
+    } else setOffline();
+  } catch { setOffline(); }
+}
+
+function setOnline(d) {
+  const c = document.getElementById('conn-chip');
+  c.className = 'chip online'; c.querySelector('span:last-child').textContent = 'CONNECTED';
+  const dot = document.getElementById('api-dot');
+  dot.className = 'api-status-dot ok';
+  document.getElementById('api-status-text').textContent = 'API connected';
+  document.getElementById('api-details').textContent = `${d.total_uploads} uploads · ${d.processed||0} processed`;
+}
+
+function setOffline() {
+  const c = document.getElementById('conn-chip');
+  c.className = 'chip offline'; c.querySelector('span:last-child').textContent = 'OFFLINE';
+  document.getElementById('api-dot').className = 'api-status-dot err';
+  document.getElementById('api-status-text').textContent = 'API offline';
+  document.getElementById('api-details').textContent = 'Run: uvicorn src.web.app:app --reload';
+}
+
+function updateDashboard(d) {
+  document.getElementById('kpi-api').textContent = '● ONLINE';
+  document.getElementById('kpi-api').style.color = 'var(--green)';
+  document.getElementById('kpi-api-sub').textContent = `v${d.version}`;
+  document.getElementById('kpi-total').textContent = d.total_uploads;
+  document.getElementById('kpi-processed').textContent = d.processed || 0;
+  document.getElementById('health-body').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div><span style="color:var(--muted)">Status: </span><strong style="color:var(--green)">● OK</strong></div>
+      <div><span style="color:var(--muted)">Version: </span><strong>${d.version}</strong></div>
+      <div><span style="color:var(--muted)">Total Uploads: </span><strong>${d.total_uploads}</strong></div>
+      <div><span style="color:var(--muted)">Processed: </span><strong>${d.processed||0}</strong></div>
+      <div style="grid-column:1/-1"><span style="color:var(--muted)">Upload Dir: </span><code style="font-size:10px;background:rgba(255,255,255,.05);padding:1px 5px;border-radius:3px">${d.upload_dir||''}</code></div>
+    </div>
+    <div style="margin-top:10px;padding:8px 10px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:6px;font-size:11px;color:var(--green)">
+      ✓ All engines ready · No LLM key required
+    </div>`;
+}
+
+// ── Load uploads ───────────────────────────────────────────────────────────────
+async function loadUploads() {
+  try {
+    const r = await fetch(API + '/api/uploads');
+    uploads = await r.json();
+    renderUploads();
+    updateBadge();
+    updateDashboardActivity();
+    // Update auto-executed count
+    const auto = uploads.filter(u => {
+      const dr = u.processing_result;
+      return dr && dr.decision && dr.decision.decision === 'AUTO_EXECUTE';
+    }).length;
+    document.getElementById('kpi-auto').textContent = auto;
+  } catch(e) {
+    console.warn('Could not load uploads:', e);
+  }
+}
+
+function updateBadge() {
+  document.getElementById('upload-count').textContent = uploads.length;
+}
+
+function updateDashboardActivity() {
+  const el = document.getElementById('activity-list');
+  if (!uploads.length) {
+    el.innerHTML = `<div style="font-size:12px;color:var(--muted);padding:10px 0">No uploads yet. <span style="color:var(--blue);cursor:pointer" onclick="showPage('upload')">Go to Upload Center →</span></div>`;
+    return;
+  }
+  el.innerHTML = uploads.slice(0,6).map(u => {
+    const icon = fileIcon(u.extension);
+    const st = statusBadge(u.status, u.processing_result);
+    const ts = fmtTime(u.uploaded_at);
+    return `<div class="activity-item">
+      <span class="act-icon">${icon}</span>
+      <div class="act-body">
+        <div class="act-title">${esc(u.filename)}</div>
+        <div class="act-sub">${u.file_type} · ${fmtSize(u.size_bytes)} · ${st}</div>
+      </div>
+      <span class="act-time">${ts}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Render uploads table ───────────────────────────────────────────────────────
+function renderUploads() {
+  const tbody = document.getElementById('uploads-tbody');
+  const filtered = activeFilter === 'all' ? uploads
+    : uploads.filter(u => u.extension === activeFilter);
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted)">
+      ${activeFilter==='all' ? 'No uploads yet.' : `No ${activeFilter} files uploaded.`}
+    </td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(u => {
+    const icon = fileIcon(u.extension);
+    const typeBadge = typeBadgeHtml(u.extension, u.file_type);
+    const stBadge = statusBadge(u.status, u.processing_result);
+    const ts = fmtTime(u.uploaded_at);
+    const procLabel = u.status === 'processed' ? '↻ Re-run' : '▶ Process';
+    const procCls = u.status === 'processing' ? ' disabled' : '';
+    return `<tr onclick="toggleRow('${u.id}')">
+      <td>
+        <span style="margin-right:6px">${icon}</span>
+        <strong style="color:var(--tx);font-size:12px">${esc(u.filename)}</strong>
+        <div style="font-size:9px;color:var(--muted);margin-top:1px;font-family:monospace">ID: ${u.id}</div>
+      </td>
+      <td>${typeBadge}</td>
+      <td style="color:var(--muted);font-size:11px">${fmtSize(u.size_bytes)}</td>
+      <td style="font-size:11px;font-family:monospace;color:var(--muted)">${ts}</td>
+      <td>${stBadge}</td>
+      <td>
+        <button class="proc-btn${procCls}" onclick="event.stopPropagation();processFile('${u.id}')">${procLabel}</button>
+        <button style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:4px 6px;border-radius:4px;transition:all .15s"
+          onclick="event.stopPropagation();deleteUpload('${u.id}')"
+          onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function toggleRow(id) {
+  // Click row → jump to result if processed, otherwise show preview
+  const u = uploads.find(r => r.id === id);
+  if (u && u.processing_result) {
+    renderFinalResult(u.processing_result, false);
+  }
+}
+
+// ── File type tab filter ───────────────────────────────────────────────────────
+function filterTab(el, type) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  activeFilter = type;
+  renderUploads();
+}
+
+// ── Drag & drop ────────────────────────────────────────────────────────────────
+function ev(e)  { e.preventDefault(); document.getElementById('drop-zone').classList.add('over'); }
+function evl(e) { document.getElementById('drop-zone').classList.remove('over'); }
+function evd(e) { e.preventDefault(); evl(e); if (e.dataTransfer.files.length) doUpload(e.dataTransfer.files[0]); }
+function onFileChosen(files) { if (files.length) doUpload(files[0]); }
+
+// ── Upload ─────────────────────────────────────────────────────────────────────
+function doUpload(file) {
+  const ext = '.' + (file.name.split('.').pop() || '').toLowerCase();
+  if (!['.txt','.csv','.json','.pdf'].includes(ext)) {
+    showFlash('err','❌ File type not supported. Use .txt  .csv  .json  .pdf');
+    return;
+  }
+  if (file.size > 50 * 1024 * 1024) { showFlash('err','❌ File too large (50 MB limit).'); return; }
+
+  showProg(file.name, fileIcon(ext));
+  hideFlash();
+  hideResult();
+
+  const xhr = new XMLHttpRequest();
+  xhr.upload.addEventListener('progress', e => {
+    if (e.lengthComputable) {
+      const p = Math.round(e.loaded / e.total * 90);
+      setProg(p, 'Uploading…');
+    }
+  });
+  xhr.addEventListener('load', () => {
+    setProg(100, 'Finalising…');
+    setTimeout(() => {
+      hideProg();
+      try {
+        const d = JSON.parse(xhr.responseText);
+        if (xhr.status >= 400 || !d.success) {
+          showFlash('err', '❌ ' + (d.detail || d.message || 'Upload failed'));
+        } else {
+          uploads.unshift(d.file);
+          renderUploads();
+          updateBadge();
+          updateDashboardActivity();
+          if ((d.file.warnings||[]).length) {
+            showFlash('warn', '⚠ Uploaded with warnings: ' + d.file.warnings[0]);
+          } else {
+            showFlash('ok', `✓ ${file.name} uploaded · ${d.file.file_type} · ${fmtSize(d.file.size_bytes)}`);
+          }
+          setTimeout(hideFlash, 6000);
+        }
+      } catch { showFlash('err','❌ Server response error.'); }
+    }, 400);
+  });
+  xhr.addEventListener('error', () => { hideProg(); showFlash('err','❌ Network error.'); });
+
+  const form = new FormData();
+  form.append('file', file, file.name);
+  xhr.open('POST', API + '/api/upload');
+  xhr.send(form);
+}
+
+// ── Process ────────────────────────────────────────────────────────────────────
+async function processFile(fileId) {
+  if (processingId === fileId) return;
+  processingId = fileId;
+  const u = uploads.find(r => r.id === fileId);
+
+  showResult();
+  resetSteps();
+
+  // Animate pipeline steps
+  const steps = [
+    ['step-parse', '📄', 'Parsing document…'],
+    ['step-comp',  '🛡', 'Running compliance check…'],
+    ['step-fx',    '💱', 'Optimising FX rates…'],
+    ['step-liq',   '💧', 'Checking liquidity…'],
+    ['step-risk',  '📊', 'Scoring risk factors…'],
+    ['step-dec',   '⚡', 'Making decision…'],
+  ];
+
+  // Start actual fetch
+  const fetchPromise = fetch(API + `/api/process-upload/${fileId}`, {method:'POST'});
+
+  // Animate steps with delays
+  for (let i = 0; i < steps.length; i++) {
+    const [id, , msg] = steps[i];
+    setStep(id, 'running', msg);
+    await sleep(320 + i * 80);
+    setStep(id, 'done', '');
+  }
+
+  try {
+    const r = await fetchPromise;
+    const d = await r.json();
+
+    // Update local record
+    const idx = uploads.findIndex(rec => rec.id === fileId);
+    if (idx !== -1) {
+      uploads[idx].status = d.success ? 'processed' : 'error';
+      uploads[idx].processing_result = d.result;
+    }
+    renderUploads();
+    renderFinalResult(d.result, true);
+  } catch(e) {
+    renderFinalResult({ error: e.message, pipeline: 'Unknown' }, true);
+  } finally {
+    processingId = null;
+  }
+}
+
+function resetSteps() {
+  ['step-parse','step-comp','step-fx','step-liq','step-risk','step-dec'].forEach(id => {
+    setStep(id, 'wait', 'WAITING');
+  });
+  document.getElementById('final-result').style.display = 'none';
+  document.getElementById('final-result').innerHTML = '';
+  document.getElementById('pipeline-steps').style.display = 'flex';
+}
+
+function setStep(id, state, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'step ' + state;
+  const st = el.querySelector('.step-status');
+  if (state === 'done') st.textContent = 'DONE ✓';
+  else if (state === 'running') { st.textContent = 'RUNNING…'; }
+  else st.textContent = msg || 'WAITING';
+}
+
+// ── Render result ──────────────────────────────────────────────────────────────
+function renderFinalResult(result, hideSteps) {
+  if (hideSteps) document.getElementById('pipeline-steps').style.display = 'none';
+  const el = document.getElementById('final-result');
+  el.style.display = 'block';
+
+  if (!result) { el.innerHTML = '<p style="color:var(--muted)">No result.</p>'; return; }
+  if (result.error) {
+    el.innerHTML = `<div class="result-decision HARD_REJECT">
+      <div class="decision-badge">ERROR</div>
+      <div class="decision-sub">${esc(result.error)}</div>
+      ${result.hint ? `<div style="font-size:11px;color:var(--muted);margin-top:6px">💡 ${esc(result.hint)}</div>` : ''}
+    </div>`;
+    return;
+  }
+
+  const pipe = result.pipeline || '';
+
+  if (pipe === 'SWIFT MT103' && result.decision) {
+    el.innerHTML = renderSwiftResult(result);
+  } else if (pipe === 'CSV Batch') {
+    el.innerHTML = renderCsvResult(result);
+  } else if (pipe === 'JSON Payment') {
+    el.innerHTML = renderJsonResult(result);
+  } else if (pipe === 'PDF Document') {
+    el.innerHTML = renderPdfResult(result);
+  } else {
+    el.innerHTML = `<pre class="json-block show">${esc(JSON.stringify(result,null,2))}</pre>`;
+  }
+}
+
+function renderSwiftResult(r) {
+  const dec = r.decision || {};
+  const comp = r.compliance || {};
+  const fx   = r.forex || {};
+  const liq  = r.liquidity || {};
+  const risk = r.risk || {};
+  const pay  = r.payment || {};
+  const d    = dec.decision || 'UNKNOWN';
+  const compColor = comp.decision==='CLEAR'?'var(--green)':comp.decision==='FLAG'?'var(--yellow)':'var(--red)';
+  const riskColor = risk.risk_level==='LOW'?'var(--green)':risk.risk_level==='MEDIUM'?'var(--yellow)':risk.risk_level==='HIGH'?'var(--orange)':'var(--red)';
+  const liqColor  = liq.status==='SUFFICIENT'?'var(--green)':'var(--red)';
+  const decColor  = d==='AUTO_EXECUTE'?'var(--green)':d==='ESCALATE'?'var(--yellow)':'var(--red)';
+  const decEmoji  = d==='AUTO_EXECUTE'?'✅':d==='ESCALATE'?'⚠️':'❌';
+  const jsonStr   = JSON.stringify(r, null, 2);
+
+  return `
+  <div class="result-decision ${d}">
+    <div class="decision-badge">${decEmoji} ${d.replace('_',' ')}</div>
+    <div class="decision-sub">${esc(dec.summary||'')} · Confidence ${Math.round((dec.confidence||0)*100)}%</div>
+
+    <div class="result-grid">
+      <div class="rg-item">
+        <div class="rg-label">Compliance</div>
+        <div class="rg-val" style="color:${compColor}">${comp.decision||'—'}</div>
+      </div>
+      <div class="rg-item">
+        <div class="rg-label">Risk Score</div>
+        <div class="rg-val" style="color:${riskColor}">${risk.composite_score||'—'} <span style="font-size:12px">${risk.risk_level||''}</span></div>
+      </div>
+      <div class="rg-item">
+        <div class="rg-label">FX Savings</div>
+        <div class="rg-val" style="color:var(--yellow)">$${(fx.estimated_savings_usd||0).toFixed(0)}</div>
+      </div>
+      <div class="rg-item">
+        <div class="rg-label">Liquidity</div>
+        <div class="rg-val" style="color:${liqColor};font-size:12px">${liq.status||'—'}</div>
+      </div>
+    </div>
+
+    ${dec.escalation_level ? `<div style="padding:8px 12px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:7px;font-size:12px;font-weight:700;color:var(--yellow);margin-bottom:12px">↑ Escalated to: ${dec.escalation_level.replace('_',' ')}</div>` : ''}
+    ${dec.execution_route ? `<div style="font-size:12px;color:var(--tx2);margin-bottom:10px">Route: <strong style="color:var(--cyan)">${esc(dec.execution_route)}</strong></div>` : ''}
+  </div>
+
+  <div class="detail-section">
+    <h4>Payment Details</h4>
+    <div class="kv-grid">
+      <div class="kv"><div class="kv-k">Payment ID</div><div class="kv-v" style="color:var(--cyan);font-family:monospace">${pay.payment_id||'—'}</div></div>
+      <div class="kv"><div class="kv-k">Amount</div><div class="kv-v" style="color:var(--green)">${pay.source_currency} ${(pay.amount||0).toLocaleString()} → ${pay.target_currency}</div></div>
+      <div class="kv"><div class="kv-k">Counterparty</div><div class="kv-v">${esc(pay.counterparty||'—')}</div></div>
+      <div class="kv"><div class="kv-k">Country</div><div class="kv-v">${pay.bank_country||'—'}</div></div>
+      <div class="kv"><div class="kv-k">Purpose</div><div class="kv-v">${pay.purpose||'—'}</div></div>
+      <div class="kv"><div class="kv-k">Value Date</div><div class="kv-v">${pay.value_date||'—'}</div></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h4>Analysis Breakdown</h4>
+    <div class="kv-grid">
+      <div class="kv"><div class="kv-k">Compliance Decision</div><div class="kv-v" style="color:${compColor}">${comp.decision||'—'}</div></div>
+      <div class="kv"><div class="kv-k">Sanctions Matches</div><div class="kv-v" style="color:${comp.sanctions_matches?'var(--red)':'var(--green)'}">
+        ${comp.sanctions_matches||0} ${comp.sanctions_matches?'⚠':'✓'}</div></div>
+      <div class="kv"><div class="kv-k">FX Provider</div><div class="kv-v">${fx.recommended_provider||'—'}</div></div>
+      <div class="kv"><div class="kv-k">FX Rate</div><div class="kv-v">${(fx.recommended_rate||0).toFixed(4)}</div></div>
+      <div class="kv"><div class="kv-k">Available Balance</div><div class="kv-v">$${(liq.available_balance||0).toLocaleString()}</div></div>
+      <div class="kv"><div class="kv-k">Covenant At Risk</div><div class="kv-v" style="color:${liq.covenant_at_risk?'var(--red)':'var(--green)'}">
+        ${liq.covenant_at_risk?'YES ⚠':'NO ✓'}</div></div>
+    </div>
+  </div>
+
+  <div class="json-toggle" onclick="toggleJson(this)">▼ Show full JSON response</div>
+  <pre class="json-block">${esc(jsonStr)}</pre>`;
+}
+
+function renderCsvResult(r) {
+  const cols = (r.columns||[]).slice(0,6);
+  const rows = (r.preview||[]).slice(0,4);
+  const heads = cols.length ? `<tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr>` : '';
+  const bodyRows = rows.map(row => `<tr>${cols.map(c=>`<td>${esc(String(row[c]??''))}</td>`).join('')}</tr>`).join('');
+  return `
+  <div class="result-decision csv">
+    <div class="decision-badge">✅ CSV VALIDATED</div>
+    <div class="decision-sub">${r.row_count||0} payment records · ${r.column_count||0} columns · Total: ${r.total_amount ? '$'+Number(r.total_amount).toLocaleString() : 'n/a'}</div>
+  </div>
+  ${heads ? `<div class="detail-section"><h4>Preview (first ${rows.length} rows)</h4>
+    <div style="overflow-x:auto"><table class="preview-tbl"><thead>${heads}</thead><tbody>${bodyRows}</tbody></table></div></div>` : ''}
+  <div style="margin-top:12px;padding:12px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;font-size:12px;color:var(--tx2)">
+    💡 <strong>Next step:</strong> ${r.next_step||'Upload individual SWIFT MT103 files to run the full AI pipeline on each payment.'}
+  </div>`;
+}
+
+function renderJsonResult(r) {
+  const ids = (r.payment_ids||[]).slice(0,6).join(', ');
+  const ccys = (r.currencies||[]).join(', ');
+  return `
+  <div class="result-decision json">
+    <div class="decision-badge">✅ JSON VALIDATED</div>
+    <div class="decision-sub">${r.record_count||0} payment records · Currencies: ${ccys||'—'} · Total: ${r.total_amount ? '$'+Number(r.total_amount).toLocaleString() : 'n/a'}</div>
+  </div>
+  <div class="detail-section"><h4>Extracted Records</h4>
+    <div class="kv-grid">
+      <div class="kv"><div class="kv-k">Record Count</div><div class="kv-v" style="color:var(--green)">${r.record_count||0}</div></div>
+      <div class="kv"><div class="kv-k">Currencies</div><div class="kv-v" style="color:var(--cyan)">${ccys||'—'}</div></div>
+      <div class="kv"><div class="kv-k">Total Value</div><div class="kv-v" style="color:var(--yellow)">${r.total_amount ? '$'+Number(r.total_amount).toLocaleString() : '—'}</div></div>
+      <div class="kv"><div class="kv-k">Payment IDs</div><div class="kv-v" style="font-size:10px;color:var(--tx2)">${ids||'—'}</div></div>
+    </div>
+  </div>
+  <div style="margin-top:12px;padding:12px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;font-size:12px;color:var(--tx2)">
+    💡 <strong>Next step:</strong> ${r.next_step||'Submit individual payment records to the pipeline.'}
+  </div>`;
+}
+
+function renderPdfResult(r) {
+  return `
+  <div class="result-decision pdf">
+    <div class="decision-badge">📄 PDF RECEIVED</div>
+    <div class="decision-sub">${r.is_valid_pdf?'Valid PDF':'Unknown format'} · ${r.estimated_pages||'?'} pages · ${r.size_kb||'?'} KB</div>
+  </div>
+  ${r.title ? `<div style="font-size:12px;color:var(--tx2);margin-bottom:12px">Title: <strong>${esc(r.title)}</strong></div>` : ''}
+  <div style="padding:14px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;font-size:12px;color:var(--tx2);margin-bottom:12px">
+    📝 <strong>${r.ocr_note||'PDF extraction ready for integration.'}</strong>
+  </div>
+  <div class="detail-section"><h4>Integration Points</h4>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      ${(r.integration_points||[]).map(p=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx2)"><span style="color:var(--blue)">→</span>${esc(p)}</div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// ── Delete upload ──────────────────────────────────────────────────────────────
+async function deleteUpload(fileId) {
+  try {
+    await fetch(API + `/api/uploads/${fileId}`, {method:'DELETE'});
+    uploads = uploads.filter(u => u.id !== fileId);
+    renderUploads(); updateBadge(); updateDashboardActivity();
+    if (processingId === fileId) hideResult();
+  } catch(e) { console.warn('Delete failed:', e); }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+function toggleJson(el) {
+  const pre = el.nextElementSibling;
+  if (!pre) return;
+  const open = pre.classList.toggle('show');
+  el.textContent = (open ? '▲' : '▼') + ' ' + (open ? 'Hide' : 'Show') + ' full JSON response';
+}
+
+function showProg(name, icon) {
+  document.getElementById('prog-name').textContent = name;
+  document.getElementById('prog-icon').textContent = icon;
+  setProg(0, 'Preparing…');
+  document.getElementById('prog').classList.add('show');
+}
+function setProg(p, msg) {
+  document.getElementById('prog-fill').style.width = p + '%';
+  document.getElementById('prog-pct').textContent = p + '%';
+  document.getElementById('prog-msg').textContent = msg;
+}
+function hideProg() { document.getElementById('prog').classList.remove('show'); }
+
+function showFlash(type, msg) {
+  const el = document.getElementById('flash');
+  el.className = 'flash show ' + type;
+  document.getElementById('flash-msg').textContent = msg;
+}
+function hideFlash() {
+  document.getElementById('flash').classList.remove('show');
+}
+
+function showResult() {
+  document.getElementById('result-wrap').classList.add('show');
+  document.getElementById('result-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function hideResult() { document.getElementById('result-wrap').classList.remove('show'); }
+
+function fileIcon(ext) {
+  return ext==='.txt'?'📨':ext==='.csv'?'📊':ext==='.json'?'📋':ext==='.pdf'?'📄':'📁';
+}
+
+function typeBadgeHtml(ext, label) {
+  const cls = ext==='.txt'?'b':ext==='.csv'?'g':ext==='.json'?'y':ext==='.pdf'?'r':'gr';
+  return `<span class="badge ${cls}">${esc(label||ext)}</span>`;
+}
+
+function statusBadge(status, result) {
+  if (status === 'processed') {
+    const dec = result && result.decision && result.decision.decision;
+    if (dec === 'AUTO_EXECUTE') return '<span class="badge g">✓ AUTO</span>';
+    if (dec === 'ESCALATE')    return '<span class="badge y">↑ ESCALATE</span>';
+    if (dec === 'HARD_REJECT') return '<span class="badge r">✗ REJECT</span>';
+    if (result && result.status === 'validated') return '<span class="badge b">✓ VALIDATED</span>';
+    if (result && result.status === 'received') return '<span class="badge p">📄 RECEIVED</span>';
+    return '<span class="badge g">✓ DONE</span>';
+  }
+  if (status === 'error') return '<span class="badge r">✗ ERROR</span>';
+  return '<span class="badge gr">UPLOADED</span>';
+}
+
+function fmtSize(b) {
+  if (!b) return '0 B';
+  if (b < 1024) return b + ' B';
+  if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+  return (b/1048576).toFixed(1) + ' MB';
+}
+
+function fmtTime(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso), p = n => String(n).padStart(2,'0');
+    return `${p(d.getUTCHours())}:${p(d.getUTCMinutes())} UTC`;
+  } catch { return iso; }
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+checkHealth();
+loadUploads();
+setInterval(() => { checkHealth(); loadUploads(); }, 10000);
+</script>
+</body>
+</html>

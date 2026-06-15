@@ -1,0 +1,74 @@
+{
+  "_comment": "SYNTHETIC DATA — corporate entity hierarchy for OmniTreasury AI demo",
+  "parent_entity": {
+    "id": "CORP-HQ",
+    "legal_name": "Nexus Global Corporation",
+    "country": "US",
+    "tax_id": "EIN-12-3456789",
+    "functional_currency": "USD",
+    "type": "PARENT"
+  },
+  "entities": [
+    {
+      "id": "CORP-HQ",
+      "legal_name": "Nexus Global Corporation",
+      "country": "US",
+      "tax_id": "EIN-12-3456789",
+      "functional_currency": "USD",
+      "type": "PARENT",
+      "bank_accounts": ["US0900040012345678"],
+      "treasury_contact": "treasury@nexusglobal.com"
+    },
+    {
+      "id": "CORP-EMEA",
+      "legal_name": "Nexus Global Europe GmbH",
+      "country": "DE",
+      "tax_id": "DE-987654321",
+      "functional_currency": "EUR",
+      "type": "SUBSIDIARY",
+      "parent_id": "CORP-HQ",
+      "bank_accounts": ["DE89370400440532013000", "FR7630006000011234567890189"],
+      "treasury_contact": "treasury.emea@nexusglobal.com"
+    },
+    {
+      "id": "CORP-UK",
+      "legal_name": "Nexus Global (UK) Limited",
+      "country": "GB",
+      "tax_id": "GB-123456789",
+      "functional_currency": "GBP",
+      "type": "SUBSIDIARY",
+      "parent_id": "CORP-EMEA",
+      "bank_accounts": ["GB29NWBK60161331926819", "GB91BARC20714383608987"],
+      "treasury_contact": "treasury.uk@nexusglobal.com"
+    },
+    {
+      "id": "CORP-APAC",
+      "legal_name": "Nexus Global Asia Pacific Pte Ltd",
+      "country": "SG",
+      "tax_id": "SG-200012345A",
+      "functional_currency": "SGD",
+      "type": "SUBSIDIARY",
+      "parent_id": "CORP-HQ",
+      "bank_accounts": ["SG0600201234567890", "SG0600201234567891"],
+      "treasury_contact": "treasury.apac@nexusglobal.com"
+    },
+    {
+      "id": "CORP-LATAM",
+      "legal_name": "Nexus Global Brasil Ltda",
+      "country": "BR",
+      "tax_id": "CNPJ-12.345.678/0001-90",
+      "functional_currency": "BRL",
+      "type": "SUBSIDIARY",
+      "parent_id": "CORP-HQ",
+      "bank_accounts": ["BR9700360305000010009795493P1"],
+      "treasury_contact": "treasury.latam@nexusglobal.com"
+    }
+  ],
+  "approved_counterparties": [
+    {"id": "CP-001", "name": "Acme Manufacturing GmbH", "country": "DE", "risk_tier": "LOW"},
+    {"id": "CP-002", "name": "Global Tech Solutions Ltd", "country": "GB", "risk_tier": "LOW"},
+    {"id": "CP-003", "name": "Pacific Rim Suppliers Inc", "country": "SG", "risk_tier": "MEDIUM"},
+    {"id": "CP-004", "name": "Emerging Markets Partners LLC", "country": "AE", "risk_tier": "HIGH"},
+    {"id": "CP-005", "name": "London Subsidiary Ltd", "country": "GB", "risk_tier": "LOW", "is_internal": true}
+  ]
+}

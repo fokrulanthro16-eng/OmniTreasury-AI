@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #00ff00; text-decoration-color: #00ff00}
+.r2 {color: #008080; text-decoration-color: #008080; font-weight: bold}
+.r3 {font-style: italic}
+.r4 {font-weight: bold}
+.r5 {color: #7f7f7f; text-decoration-color: #7f7f7f}
+.r6 {color: #008000; text-decoration-color: #008000}
+.r7 {color: #008000; text-decoration-color: #008000; font-weight: bold}
+.r8 {color: #008080; text-decoration-color: #008080}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">
+<span class="r1">─────────────────────────────────────────────────────── </span><span class="r2"> GLOBAL LIQUIDITY OVERVIEW </span><span class="r1"> ────────────────────────────────────────────────────────</span>
+
+<span class="r3">                              Cash Positions — All Entities &amp; Currencies                              </span>
+╭────────────┬──────────┬───────────────────┬──────────────┬────────────┬───────────────────┬────────╮
+│<span class="r4"> Entity     </span>│<span class="r4"> Currency </span>│<span class="r4"> Available Balance </span>│<span class="r4"> Covenant Min </span>│<span class="r4">   Headroom </span>│<span class="r4">    Utilisation    </span>│<span class="r4"> Status </span>│
+├────────────┼──────────┼───────────────────┼──────────────┼────────────┼───────────────────┼────────┤
+│<span class="r2"> CORP-HQ    </span>│   EUR    │         EUR 2.85M │<span class="r5">   EUR 500.0K </span>│  <span class="r6">EUR 2.35M</span> │ <span class="r6">11%</span>  ████████░░░░ │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-HQ    </span>│   USD    │         USD 1.42M │<span class="r5">   USD 200.0K </span>│  <span class="r6">USD 1.22M</span> │ <span class="r6">5%</span>  █████████░░░  │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-HQ    </span>│   GBP    │        GBP 180.0K │<span class="r5">    GBP 50.0K </span>│ <span class="r6">GBP 130.0K</span> │ <span class="r6">10%</span>  ███████░░░░░ │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-EMEA  </span>│   EUR    │         EUR 7.50M │<span class="r5">    EUR 1.00M </span>│  <span class="r6">EUR 6.50M</span> │ <span class="r6">6%</span>  █████████░░░  │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-EMEA  </span>│   GBP    │         GBP 3.10M │<span class="r5">   GBP 400.0K </span>│  <span class="r6">GBP 2.70M</span> │ <span class="r6">11%</span>  █████████░░░ │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-APAC  </span>│   USD    │        USD 920.0K │<span class="r5">   USD 150.0K </span>│ <span class="r6">USD 770.0K</span> │ <span class="r6">8%</span>  █████████░░░  │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-APAC  </span>│   SGD    │        SGD 450.0K │<span class="r5">    SGD 50.0K </span>│ <span class="r6">SGD 400.0K</span> │ <span class="r6">10%</span>  █████████░░░ │   <span class="r7">OK</span>   │
+│<span class="r2"> CORP-LATAM </span>│   USD    │         USD 85.0K │<span class="r5">    USD 50.0K </span>│  <span class="r6">USD 35.0K</span> │ <span class="r6">15%</span>  ████░░░░░░░░ │   <span class="r7">OK</span>   │
+├────────────┼──────────┼───────────────────┼──────────────┼────────────┼───────────────────┼────────┤
+│<span class="r4"> TOTAL      </span>│<span class="r4">          </span>│<span class="r4">                   </span>│<span class="r4">              </span>│<span class="r4">            </span>│<span class="r4">                   </span>│<span class="r4">        </span>│
+╰────────────┴──────────┴───────────────────┴──────────────┴────────────┴───────────────────┴────────╯
+
+<span class="r5">╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</span>
+<span class="r5">│</span> <span class="r2">Consolidated USD Equivalent:</span> <span class="r4">$    18,136,950</span>    <span class="r2">Entities Monitored:</span> <span class="r4">8</span>    <span class="r2">Covenant Breaches:</span> <span class="r7">NONE</span>                                         <span class="r5">│</span>
+<span class="r5">╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+
+<span class="r3">                                    Active Intercompany Netting Opportunities                                     </span>
+                                                                                                                  
+ <span class="r4"> Counterparty          </span> <span class="r4"> Currency </span> <span class="r4"> Offsetting Amount </span> <span class="r4"> Description                                             </span> 
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+ <span class="r8"> LONDON SUBSIDIARY LTD </span>    GBP             GBP 280.0K   Offsetting intercompany receivable from UK subsidiary    
+ <span class="r8"> CORP-EMEA             </span>    EUR             EUR 500.0K   Intercompany management fee receivable from EMEA entity  
+                                                                                                                  
+
+</code></pre>
+</body>
+</html>
