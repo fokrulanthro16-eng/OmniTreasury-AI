@@ -50,7 +50,21 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 2. Configure environment
+### 2. Run the Web Dashboard (recommended)
+
+```bash
+# Seed clean demo data
+python scripts/reset_demo_data.py
+
+# Start the FastAPI web app
+python -m uvicorn src.web.app:app --reload
+```
+
+Open **http://localhost:8000** — full workflow in your browser.
+
+See [DEMO.md](DEMO.md) for the complete 5-minute judge walkthrough.
+
+### 3. Configure environment (optional)
 
 ```bash
 copy .env.example .env
@@ -58,7 +72,7 @@ copy .env.example .env
 # Add ANTHROPIC_API_KEY or OPENAI_API_KEY to enable CrewAI LLM agents
 ```
 
-### 3. Run demo scenarios
+### 4. Run CLI demo scenarios
 
 ```bash
 # Scenario 1: Clean payment → auto-approved in <30 seconds
@@ -83,10 +97,36 @@ python main.py batch
 python main.py parse-swift sample_data\swift_samples\sample_mt103.txt
 ```
 
-### 4. Run tests
+### 5. Run tests
 
 ```bash
 pytest tests/ -v
+```
+
+---
+
+## Web API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | System status and upload counts |
+| `GET` | `/api/uploads` | All upload records, newest first |
+| `GET` | `/api/uploads/{id}` | Single upload record |
+| `POST` | `/api/upload` | Submit a new file (multipart/form-data) |
+| `DELETE` | `/api/uploads/{id}` | Remove an upload record |
+| `POST` | `/api/process-upload/{id}` | Run the full AI pipeline on an uploaded file |
+| `GET` | `/api/cases` | All Maestro cases (filter: `?status=OPEN`) |
+| `GET` | `/api/cases/{id}` | Single case with full payload |
+| `PATCH` | `/api/cases/{id}` | Update status / add reviewer notes |
+| `GET` | `/api/audit` | Immutable audit trail (`?limit=100&upload_id=...`) |
+| `GET` | `/api/metrics` | Live aggregate KPIs |
+| `GET` | `/api/docs` | Interactive Swagger UI |
+
+### Case Lifecycle
+
+```
+OPEN → UNDER_REVIEW → APPROVED → CLOSED
+                    ↘ REJECTED → CLOSED
 ```
 
 ---

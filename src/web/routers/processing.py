@@ -3,18 +3,22 @@
 For SWIFT MT103 (.txt): runs the full AI pipeline — compliance, FX, liquidity,
 risk, and decision engines — and returns a structured result.
 
-For CSV / JSON: validates format, returns preview and record summary.
+If the decision is ESCALATE, a Maestro case is automatically created and
+persisted to data/cases.json. The upload record is updated with linked_case_id.
 
+For CSV / JSON: validates format, returns preview and record summary.
 For PDF: acknowledges receipt and describes OCR integration point.
 """
 
 from __future__ import annotations
 
+import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
 
-from src.web import history as hist
+from src.web import history as hist, store
 
 router = APIRouter()
 
@@ -33,7 +37,7 @@ def process_upload(file_id: str):
             detail="File not found on disk. It may have been deleted.",
         )
 
-    ext = record.get("extension", "")
+    ext  = record.get("extension", "")
     data = saved_path.read_bytes()
 
     if ext == ".txt":
@@ -48,10 +52,30 @@ def process_upload(file_id: str):
         raise HTTPException(status_code=400, detail=f"No processor for '{ext}'.")
 
     status = "error" if result.get("error") else "processed"
-    record["status"] = status
+    record["status"]            = status
     record["processing_result"] = result
-    record["processing_error"] = result.get("error")
+    record["processing_error"]  = result.get("error")
+
+    if result.get("case_id"):
+        record["linked_case_id"] = result["case_id"]
+
     hist.upsert(record)
+
+    # Emit audit event for pipeline completion
+    if not result.get("error"):
+        decision_val = (result.get("decision") or {}).get("decision", "")
+        risk_val     = (result.get("risk") or {}).get("composite_score")
+        store.add_audit(
+            event_type="PIPELINE_COMPLETE",
+            description=(
+                f"Pipeline complete: {result.get('pipeline', ext)}"
+                + (f" → {decision_val}" if decision_val else "")
+                + (f" (risk {risk_val})" if risk_val is not None else "")
+            ),
+            upload_id=file_id,
+            case_id=result.get("case_id"),
+            details={"decision": decision_val, "risk_score": risk_val},
+        )
 
     return {"success": status != "error", "file_id": file_id, "result": result}
 
@@ -67,16 +91,15 @@ def _run_swift_pipeline(data: bytes, record: dict) -> dict:
         from src.engines.risk_engine import RiskEngine
         from src.engines.decision_engine import DecisionEngine
 
-        text = data.decode("utf-8", errors="replace")
-        payment = parse_mt103(text)
-
+        text       = data.decode("utf-8", errors="replace")
+        payment    = parse_mt103(text)
         compliance = ComplianceEngine().run(payment)
         forex      = ForexEngine().run(payment)
         liquidity  = LiquidityEngine().run(payment)
         risk       = RiskEngine().run(payment)
         decision   = DecisionEngine().run(payment, compliance, forex, liquidity, risk)
 
-        return {
+        result: dict = {
             "pipeline": "SWIFT MT103",
             "payment": {
                 "payment_id":       payment.payment_id,
@@ -91,34 +114,34 @@ def _run_swift_pipeline(data: bytes, record: dict) -> dict:
                 "reference":        payment.reference,
             },
             "compliance": {
-                "decision":          compliance.decision.value,
-                "confidence":        round(compliance.confidence, 3),
-                "sanctions_matches": len(compliance.sanctions_matches),
-                "aml_flags":         len(compliance.aml_flags),
+                "decision":           compliance.decision.value,
+                "confidence":         round(compliance.confidence, 3),
+                "sanctions_matches":  len(compliance.sanctions_matches),
+                "aml_flags":          len(compliance.aml_flags),
                 "jurisdiction_risks": [j.country for j in compliance.jurisdiction_risks],
-                "summary":           compliance.summary,
-                "policy_references": compliance.policy_references,
+                "summary":            compliance.summary,
+                "policy_references":  compliance.policy_references,
             },
             "forex": {
-                "recommended_provider": forex.recommended_provider,
-                "recommended_rate":     float(forex.recommended_rate),
-                "estimated_savings_usd": float(forex.estimated_savings_usd),
-                "timing":               forex.timing_recommendation.value,
-                "currency_pair":        f"{payment.source_currency}/{payment.target_currency}",
+                "recommended_provider":   forex.recommended_provider,
+                "recommended_rate":       float(forex.recommended_rate),
+                "estimated_savings_usd":  float(forex.estimated_savings_usd),
+                "timing":                 forex.timing_recommendation.value,
+                "currency_pair":          f"{payment.source_currency}/{payment.target_currency}",
             },
             "liquidity": {
-                "status":              liquidity.status.value,
-                "available_balance":   float(liquidity.available_balance),
+                "status":               liquidity.status.value,
+                "available_balance":    float(liquidity.source_position.available_balance),
                 "post_payment_balance": float(liquidity.post_payment_balance),
-                "covenant_at_risk":    liquidity.covenant_at_risk,
-                "recommended_action":  liquidity.recommended_action,
-                "netting_available":   liquidity.netting_opportunity is not None,
+                "covenant_at_risk":     liquidity.covenant_at_risk,
+                "recommended_action":   liquidity.recommended_action,
+                "netting_available":    liquidity.netting_opportunity is not None,
             },
             "risk": {
                 "composite_score": round(risk.composite_score, 1),
                 "risk_level":      risk.risk_level.value,
                 "limit_breaches":  risk.limit_breaches,
-                "factor_scores":   {k.value: round(v, 1) for k, v in risk.factor_scores.items()},
+                "factor_scores":   {f.category.value: round(f.score, 1) for f in risk.factors},
                 "mitigations":     risk.mitigation_recommendations[:3],
             },
             "decision": {
@@ -130,19 +153,82 @@ def _run_swift_pipeline(data: bytes, record: dict) -> dict:
             },
         }
 
+        # ── Auto-create Maestro case on ESCALATE ──────────────────────────────
+        if decision.decision.value == "ESCALATE":
+            case_id       = f"CASE-{uuid.uuid4().hex[:8].upper()}"
+            assigned_role = (
+                decision.escalation_level.value
+                if decision.escalation_level else "TREASURY_MANAGER"
+            )
+            priority = "HIGH" if float(payment.amount) >= 500_000 else "MEDIUM"
+            sla_map  = {
+                "CFO": 240, "TREASURY_MANAGER": 120,
+                "COMPLIANCE_OFFICER": 60, "LEGAL": 480,
+            }
+            sla_mins = sla_map.get(assigned_role, 120)
+            now_iso  = datetime.now(timezone.utc).isoformat()
+
+            store.upsert_case({
+                "case_id":        case_id,
+                "upload_id":      record.get("id"),
+                "payment_id":     payment.payment_id,
+                "title":          (
+                    f"{payment.payment_id} requires "
+                    f"{assigned_role.replace('_', ' ')} review"
+                ),
+                "case_type":      "PAYMENT_ESCALATION",
+                "priority":       priority,
+                "assigned_role":  assigned_role,
+                "status":         "OPEN",
+                "risk_score":     round(risk.composite_score, 1),
+                "amount":         float(payment.amount),
+                "currency":       str(payment.source_currency),
+                "counterparty":   payment.counterparty.name,
+                "created_at":     now_iso,
+                "updated_at":     now_iso,
+                "closed_at":      None,
+                "reviewer":       None,
+                "reviewer_notes": None,
+                "sla_minutes":    sla_mins,
+                "payload": {
+                    "decision_summary":      decision.summary,
+                    "compliance_decision":   compliance.decision.value,
+                    "fx_savings":            float(forex.estimated_savings_usd),
+                    "liquidity_status":      liquidity.status.value,
+                    "risk_level":            risk.risk_level.value,
+                    "escalation_rationale":  [r.description for r in decision.rationales[:3]],
+                },
+            })
+            store.add_audit(
+                event_type="CASE_CREATED",
+                description=(
+                    f"Maestro case {case_id} created: {payment.payment_id} "
+                    f"escalated to {assigned_role}"
+                ),
+                upload_id=record.get("id"),
+                case_id=case_id,
+                details={
+                    "risk_score": round(risk.composite_score, 1),
+                    "amount":     float(payment.amount),
+                },
+            )
+            result["case_id"] = case_id
+
+        return result
+
     except Exception as exc:
         return {
             "pipeline": "SWIFT MT103",
-            "error": str(exc),
-            "hint": "Ensure the file contains a valid SWIFT MT103 message with :20: and :32A: fields.",
+            "error":    str(exc),
+            "hint":     "Ensure the file contains a valid SWIFT MT103 message with :20: and :32A: fields.",
         }
 
 
 # ── CSV preview ────────────────────────────────────────────────────────────────
 
 def _run_csv_preview(record: dict) -> dict:
-    meta = record.get("metadata", {})
-    rows = record.get("preview_rows", [])
+    meta  = record.get("metadata", {})
+    rows  = record.get("preview_rows", [])
     total = meta.get("total_amount")
     return {
         "pipeline":     "CSV Batch",
@@ -153,7 +239,7 @@ def _run_csv_preview(record: dict) -> dict:
         "payment_ids":  meta.get("payment_ids", []),
         "total_amount": total,
         "preview":      rows,
-        "message":      (
+        "message": (
             f"CSV validated. {meta.get('row_count', 0)} payment records found. "
             f"Total value: ${total:,.2f}." if total else
             f"CSV validated. {meta.get('row_count', 0)} rows found."
@@ -169,10 +255,10 @@ def _run_csv_preview(record: dict) -> dict:
 
 def _run_json_preview(data: bytes, record: dict) -> dict:
     import json
-    meta = record.get("metadata", {})
+    meta  = record.get("metadata", {})
     total = meta.get("total_amount")
     try:
-        payload = json.loads(data.decode("utf-8", errors="replace"))
+        payload      = json.loads(data.decode("utf-8", errors="replace"))
         records_list = (
             payload if isinstance(payload, list)
             else payload.get("payments", payload.get("records", [payload]))
@@ -182,12 +268,12 @@ def _run_json_preview(data: bytes, record: dict) -> dict:
         sample = []
 
     return {
-        "pipeline":     "JSON Payment",
-        "status":       "validated",
-        "record_count": meta.get("record_count", 0),
-        "payment_ids":  meta.get("payment_ids", []),
-        "currencies":   meta.get("currencies", []),
-        "total_amount": total,
+        "pipeline":       "JSON Payment",
+        "status":         "validated",
+        "record_count":   meta.get("record_count", 0),
+        "payment_ids":    meta.get("payment_ids", []),
+        "currencies":     meta.get("currencies", []),
+        "total_amount":   total,
         "sample_records": sample,
         "message": (
             f"JSON validated. {meta.get('record_count', 0)} payment records extracted. "

@@ -1,0 +1,208 @@
+[
+  {
+    "event_id": "18ef0dcc-ed65-4c93-b62f-bc385894a245",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:27:47.880189+00:00",
+    "actor": "system",
+    "upload_id": "0F168ED9",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "376d6611-169a-43eb-a4cc-bd618050a5f0",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:27:36.358364+00:00",
+    "actor": "system",
+    "upload_id": "E4011680",
+    "case_id": null,
+    "description": "File uploaded: gemini-code-1781253472178.txt (69 B)",
+    "details": {
+      "filename": "gemini-code-1781253472178.txt",
+      "size_bytes": 69,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "53061c06-f575-4add-b811-4b38bfce6842",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.565586+00:00",
+    "actor": "system",
+    "upload_id": "B3E47866",
+    "case_id": null,
+    "description": "File uploaded: to_delete.json (259 B)",
+    "details": {
+      "filename": "to_delete.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "3522e6d2-7692-4fce-ad93-db4cc1d3fb91",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.489639+00:00",
+    "actor": "system",
+    "upload_id": "64743EB2",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "13ba1b3b-99a6-466d-b1ba-cc51893c79f1",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.379488+00:00",
+    "actor": "system",
+    "upload_id": "64743EB2",
+    "case_id": null,
+    "description": "File uploaded: pipeline_test.txt (225 B)",
+    "details": {
+      "filename": "pipeline_test.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "b583d7dd-a01e-411d-8137-29ec64743249",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.341633+00:00",
+    "actor": "system",
+    "upload_id": "946743C1",
+    "case_id": null,
+    "description": "Pipeline complete: CSV Batch",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "58285e6d-cd0a-41b4-97d8-e1c367ebd19f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.287881+00:00",
+    "actor": "system",
+    "upload_id": "946743C1",
+    "case_id": null,
+    "description": "File uploaded: proc_csv.csv (140 B)",
+    "details": {
+      "filename": "proc_csv.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "aa500d7c-9b53-461c-b555-747e961caea3",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.240315+00:00",
+    "actor": "system",
+    "upload_id": "C6B9C2C4",
+    "case_id": null,
+    "description": "Pipeline complete: JSON Payment",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "c18834d1-01d4-409b-83f9-d0a77b30f275",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.180302+00:00",
+    "actor": "system",
+    "upload_id": "C6B9C2C4",
+    "case_id": null,
+    "description": "File uploaded: proc_test.json (259 B)",
+    "details": {
+      "filename": "proc_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "d88d8b31-6694-4eba-84a9-4be33bf7b7e2",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.083227+00:00",
+    "actor": "system",
+    "upload_id": "0F168ED9",
+    "case_id": null,
+    "description": "File uploaded: test_swift.txt (225 B)",
+    "details": {
+      "filename": "test_swift.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "6a162cc3-83c9-477f-b586-3f17b9783bd9",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.044241+00:00",
+    "actor": "system",
+    "upload_id": "FE93D24F",
+    "case_id": null,
+    "description": "File uploaded: payments.csv (140 B)",
+    "details": {
+      "filename": "payments.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "4fc0ea3f-395e-4d07-95aa-d19aaec6bc28",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.982314+00:00",
+    "actor": "system",
+    "upload_id": "44D18F05",
+    "case_id": null,
+    "description": "File uploaded: batch_test.csv (140 B)",
+    "details": {
+      "filename": "batch_test.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "73792b3e-43e9-448f-aeed-8d6368c6d382",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.933057+00:00",
+    "actor": "system",
+    "upload_id": "4B379EF4",
+    "case_id": null,
+    "description": "File uploaded: hist_check_abc123.json (259 B)",
+    "details": {
+      "filename": "hist_check_abc123.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "48fb4142-a31a-419f-a743-9d6222da3825",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.882833+00:00",
+    "actor": "system",
+    "upload_id": "5BDFB478",
+    "case_id": null,
+    "description": "File uploaded: payments_meta.json (259 B)",
+    "details": {
+      "filename": "payments_meta.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "b913e6b8-2530-4ad6-9b0d-84b0c4e06c1f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.856002+00:00",
+    "actor": "system",
+    "upload_id": "6956B2FC",
+    "case_id": null,
+    "description": "File uploaded: payments_test.json (259 B)",
+    "details": {
+      "filename": "payments_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  }
+]

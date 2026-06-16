@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
-from src.web.routers import upload, processing
+from src.web.routers import upload, processing, cases, audit, metrics
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
 _HERE = Path(__file__).parent
@@ -48,6 +48,9 @@ app.add_middleware(
 # ── Routers ────────────────────────────────────────────────────────────────────
 app.include_router(upload.router,     prefix="/api", tags=["upload"])
 app.include_router(processing.router, prefix="/api", tags=["processing"])
+app.include_router(cases.router,      prefix="/api", tags=["cases"])
+app.include_router(audit.router,      prefix="/api", tags=["audit"])
+app.include_router(metrics.router,    prefix="/api", tags=["metrics"])
 
 # ── Static files ───────────────────────────────────────────────────────────────
 if _STATIC.exists():

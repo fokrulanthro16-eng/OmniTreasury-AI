@@ -1,0 +1,1 @@
+{"payments": [{"payment_id": "PAY-TEST-001", "source_entity": "CORP-HQ", "source_currency": "USD", "target_currency": "EUR", "amount": 10000.0, "counterparty_name": "Test Vendor", "bank_country": "DE", "purpose": "TRADE_PAYMENT", "value_date": "2026-06-20"}]}

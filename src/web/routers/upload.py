@@ -15,6 +15,14 @@ _processor = FileProcessor()
 _ALLOWED = {".txt", ".csv", ".json", ".pdf"}
 
 
+def fmtsize(b: int) -> str:
+    if b < 1024:
+        return f"{b} B"
+    if b < 1_048_576:
+        return f"{b/1024:.1f} KB"
+    return f"{b/1_048_576:.1f} MB"
+
+
 # ── Health ─────────────────────────────────────────────────────────────────────
 
 @router.get("/health")
@@ -117,4 +125,14 @@ async def upload_file(file: UploadFile = File(...)):
     }
 
     hist.upsert(record)
+
+    # Emit audit event
+    from src.web import store
+    store.add_audit(
+        event_type="FILE_UPLOADED",
+        description=f"File uploaded: {filename} ({fmtsize(len(data))})",
+        upload_id=processed.upload_id,
+        details={"filename": filename, "size_bytes": len(data), "file_type": processed.file_type},
+    )
+
     return {"success": True, "file": record}
