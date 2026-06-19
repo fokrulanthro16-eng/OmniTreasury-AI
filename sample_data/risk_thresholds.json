@@ -1,0 +1,34 @@
+{
+  "_comment": "Risk limits and thresholds for OmniTreasury AI — configure per company policy",
+  "concentration_limits": {
+    "single_country_usd": 5000000,
+    "single_bank_usd": 2000000,
+    "single_counterparty_usd": 1000000,
+    "emerging_market_country_usd": 2000000
+  },
+  "risk_score_thresholds": {
+    "auto_approve_max_score": 40,
+    "escalation_score": 60,
+    "high_risk_score": 80
+  },
+  "category_weights": {
+    "counterparty": 0.30,
+    "concentration": 0.25,
+    "market": 0.25,
+    "operational": 0.20
+  },
+  "materiality_thresholds": {
+    "treasury_manager_usd": 500000,
+    "cfo_usd": 1000000,
+    "board_usd": 10000000
+  },
+  "aml_thresholds": {
+    "ctr_threshold_usd": 10000,
+    "sar_structuring_threshold_usd": 9500,
+    "enhanced_dd_threshold_usd": 50000
+  },
+  "liquidity_covenants": {
+    "default_minimum_ratio": 0.20,
+    "alert_level_ratio": 0.25
+  }
+}

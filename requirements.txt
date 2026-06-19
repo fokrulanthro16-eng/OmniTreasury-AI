@@ -1,0 +1,25 @@
+# ── Core runtime ──────────────────────────────────────────────────────────────
+pydantic==2.12.5
+pydantic-settings==2.10.1
+python-dotenv==1.2.1
+click==8.4.1
+typer==0.20.0
+rich==14.2.0
+structlog==26.1.0
+requests==2.32.5
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.27.3
+
+# ── Web application ────────────────────────────────────────────────────────────
+fastapi==0.115.6
+uvicorn==0.34.0
+python-multipart==0.0.20
+httpx==0.28.1
+
+# ── Testing ────────────────────────────────────────────────────────────────────
+pytest==9.0.2
+pytest-mock==3.15.1
+pytest-cov==7.1.0
+
+# ── Optional: LLM agentic mode ────────────────────────────────────────────────
+# crewai>=0.28          # uncomment + add API key to .env to enable CrewAI agents

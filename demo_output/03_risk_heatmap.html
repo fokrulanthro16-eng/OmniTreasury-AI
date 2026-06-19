@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #00ff00; text-decoration-color: #00ff00}
+.r2 {color: #800000; text-decoration-color: #800000; font-weight: bold}
+.r3 {font-style: italic}
+.r4 {font-weight: bold}
+.r5 {color: #008080; text-decoration-color: #008080; font-weight: bold}
+.r6 {color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #ff8700; font-weight: bold}
+.r7 {color: #000000; text-decoration-color: #000000; background-color: #008000; font-weight: bold}
+.r8 {color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #800000; font-weight: bold}
+.r9 {color: #808000; text-decoration-color: #808000}
+.r10 {color: #7f7f7f; text-decoration-color: #7f7f7f}
+.r11 {color: #008000; text-decoration-color: #008000}
+.r12 {color: #7f7f7f; text-decoration-color: #7f7f7f; font-weight: bold}
+.r13 {color: #ff8700; text-decoration-color: #ff8700}
+.r14 {color: #000000; text-decoration-color: #000000; background-color: #808000; font-weight: bold}
+.r15 {color: #800000; text-decoration-color: #800000}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">
+<span class="r1">─────────────────────────────────────────────────────── </span><span class="r2"> RISK INTELLIGENCE HEATMAP </span><span class="r1"> ────────────────────────────────────────────────────────</span>
+
+<span class="r3">                                           Risk Score Matrix — Counterparty vs Dimension (0-100)                                            </span>
+╭───────────────────────────────────────────┬────────────┬─────────┬─────────┬─────────┬─────────┬─────────┬────────┬──────────────────────╮
+│<span class="r4"> Payment / Counterparty                    </span>│<span class="r4"> Composite  </span>│<span class="r5">  CPTY   </span>│<span class="r5">  CONC   </span>│<span class="r5">   MKT   </span>│<span class="r5">   OPS   </span>│<span class="r5">  SETT   </span>│<span class="r4"> Level  </span>│<span class="r4"> Flags                </span>│
+├───────────────────────────────────────────┼────────────┼─────────┼─────────┼─────────┼─────────┼─────────┼────────┼──────────────────────┤
+│<span class="r4"> PAY-2026-0007  Istanbul Materials Group   </span>│ <span class="r6">   36.0   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   9.0 </span> │ <span class="r8">  85.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │ <span class="r9">MEDIUM</span> │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0004  Pacific Rim Suppliers Inc  </span>│ <span class="r7">   26.6   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">  31.2 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">Bank exposure: DBS </span>  │
+│<span class="r4">                                           </span>│            │         │         │         │         │         │        │ <span class="r10">Bank</span>                 │
+│<span class="r4"> PAY-2026-0003  Orion Global Trading LLC   </span>│ <span class="r7">   24.0   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   3.0 </span> │ <span class="r7">  15.0 </span> │ <span class="r6">  45.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0010  Cascade Supplies Internati </span>│ <span class="r7">   23.3   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   0.1 </span> │ <span class="r7">  15.0 </span> │ <span class="r6">  45.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0005  Global Tech Solutions Ltd  </span>│ <span class="r7">   23.2   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">  18.0 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0009  Nexus Global Corporation   </span>│ <span class="r7">   22.7   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   3.8 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0006  LONDON SUBSIDIARY LTD      </span>│ <span class="r7">   20.0   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   3.0 </span> │ <span class="r7">  15.0 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0008  Karachi Trading Alliance   </span>│ <span class="r7">   19.3   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   2.2 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0001  Acme Manufacturing GmbH    </span>│ <span class="r7">   18.9   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">   0.5 </span> │ <span class="r7">  25.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+│<span class="r4"> PAY-2026-0002  Orion Global Trading L.L.C </span>│ <span class="r7">   18.8   </span> │ <span class="r6">  35.0 </span> │ <span class="r7">  10.2 </span> │ <span class="r7">  15.0 </span> │ <span class="r7">  10.0 </span> │ <span class="r7">   0.0 </span> │  <span class="r11">LOW</span>   │ <span class="r10">—</span>                    │
+╰───────────────────────────────────────────┴────────────┴─────────┴─────────┴─────────┴─────────┴─────────┴────────┴──────────────────────╯
+
+<span class="r10">╭───────────────────────────────────── </span><span class="r12">Score Legend</span><span class="r10"> ─────────────────────────────────────╮</span>
+<span class="r10">│</span> <span class="r7">  0-34  </span>   <span class="r11"> LOW </span>   <span class="r6">  35-54  </span>   <span class="r13"> MODERATE </span>   <span class="r14">  55-74  </span>   <span class="r9"> HIGH </span>   <span class="r8">  75+   </span>   <span class="r15"> CRITICAL </span> <span class="r10">│</span>
+<span class="r10">╰────────────────────────────────────────────────────────────────────────────────────────╯</span>
+
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #00ff00; text-decoration-color: #00ff00}
+.r2 {color: #008080; text-decoration-color: #008080; font-weight: bold}
+.r3 {font-style: italic}
+.r4 {font-weight: bold}
+.r5 {color: #7f7f7f; text-decoration-color: #7f7f7f}
+.r6 {color: #008080; text-decoration-color: #008080}
+.r7 {color: #000080; text-decoration-color: #000080}
+.r8 {color: #008000; text-decoration-color: #008000; font-weight: bold}
+.r9 {color: #800000; text-decoration-color: #800000; font-weight: bold}
+.r10 {color: #800080; text-decoration-color: #800080; font-weight: bold}
+.r11 {color: #008000; text-decoration-color: #008000}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">
+<span class="r1">───────────────────────────────────────────────────────── </span><span class="r2"> IMMUTABLE AUDIT TRAIL </span><span class="r1"> ──────────────────────────────────────────────────────────</span>
+
+<span class="r3">                                                      Treasury Event Log — 68 Records                                                       </span>
+     ╷              ╷      ╷               ╷                         ╷                           ╷                                          
+ <span class="r4">  # </span>│<span class="r4"> Time (UTC)   </span>│<span class="r4">  Ev  </span>│<span class="r4"> Payment ID    </span>│<span class="r4"> Event Type              </span>│<span class="r4"> Agent                     </span>│<span class="r4"> Detail                                  </span> 
+ ════╪══════════════╪══════╪═══════════════╪═════════════════════════╪═══════════════════════════╪═════════════════════════════════════════ 
+ <span class="r5">  1 </span>│<span class="r5"> 16:42:39.667 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=a.johnson@nexusglobal.com</span>   
+ <span class="r5">  2 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5">  3 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5">  4 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5">  5 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5">  6 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r8">[OK]</span> │<span class="r6"> PAY-2026-0001 </span>│ <span class="r8">AUTO_DECISION</span>           │ DecisionOrchestratorAgent │                                          
+ <span class="r5">  7 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r8">[X]</span>  │<span class="r6"> PAY-2026-0001 </span>│ <span class="r8">PAYMENT_EXECUTED</span>        │ —                         │ <span class="r5">confirmation_ref=CONF-DF6B357112</span>         
+ <span class="r5">  8 </span>│<span class="r5"> 16:42:39.668 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=m.chen@nexusglobal.com</span>      
+ <span class="r5">  9 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 10 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 11 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 12 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 13 </span>│<span class="r5"> 16:42:39.668 </span>│ <span class="r9">[B]</span>  │<span class="r6"> PAY-2026-0002 </span>│ <span class="r9">PAYMENT_BLOCKED</span>         │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 14 </span>│<span class="r5"> 16:42:39.668 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=SYSTEM</span>                      
+ <span class="r5"> 15 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 16 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 17 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 18 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 19 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r9">[B]</span>  │<span class="r6"> PAY-2026-0003 </span>│ <span class="r9">PAYMENT_BLOCKED</span>         │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 20 </span>│<span class="r5"> 16:42:39.669 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=r.patel@nexusglobal.com</span>     
+ <span class="r5"> 21 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 22 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 23 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 24 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 25 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r10">CASE_CREATED</span>            │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 26 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0004 </span>│ <span class="r10">CASE_CREATED</span>            │ MaestroClient             │                                          
+ <span class="r5"> 27 </span>│<span class="r5"> 16:42:39.669 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=cfo@nexusglobal.com</span>         
+ <span class="r5"> 28 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 29 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 30 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 31 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 32 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r10">CASE_CREATED</span>            │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 33 </span>│<span class="r5"> 16:42:39.669 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0005 </span>│ <span class="r10">CASE_CREATED</span>            │ MaestroClient             │                                          
+ <span class="r5"> 34 </span>│<span class="r5"> 16:42:39.669 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=treasury@nexusglobal.com</span>    
+ <span class="r5"> 35 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 36 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 37 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 38 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 39 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r10">CASE_CREATED</span>            │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 40 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0006 </span>│ <span class="r10">CASE_CREATED</span>            │ MaestroClient             │                                          
+ <span class="r5"> 41 </span>│<span class="r5"> 16:42:39.670 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=procurement@nexusglobal.c…</span>  
+ <span class="r5"> 42 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 43 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 44 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 45 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 46 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r8">[OK]</span> │<span class="r6"> PAY-2026-0007 </span>│ <span class="r8">AUTO_DECISION</span>           │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 47 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r8">[X]</span>  │<span class="r6"> PAY-2026-0007 </span>│ <span class="r8">PAYMENT_EXECUTED</span>        │ —                         │ <span class="r5">confirmation_ref=CONF-3B3C0CEF5D</span>         
+ <span class="r5"> 48 </span>│<span class="r5"> 16:42:39.670 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=apac.ops@nexusglobal.com</span>    
+ <span class="r5"> 49 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 50 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 51 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 52 </span>│<span class="r5"> 16:42:39.670 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 53 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r10">CASE_CREATED</span>            │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 54 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0008 </span>│ <span class="r10">CASE_CREATED</span>            │ MaestroClient             │                                          
+ <span class="r5"> 55 </span>│<span class="r5"> 16:42:39.671 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=cfo.apac@nexusglobal.com</span>    
+ <span class="r5"> 56 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 57 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 58 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 59 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 60 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r8">[OK]</span> │<span class="r6"> PAY-2026-0009 </span>│ <span class="r8">AUTO_DECISION</span>           │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 61 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r8">[X]</span>  │<span class="r6"> PAY-2026-0009 </span>│ <span class="r8">PAYMENT_EXECUTED</span>        │ —                         │ <span class="r5">confirmation_ref=CONF-E24BD496C9</span>         
+ <span class="r5"> 62 </span>│<span class="r5"> 16:42:39.671 </span>│  <span class="r6">-&gt;</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r6">PAYMENT_RECEIVED</span>        │ —                         │ <span class="r5">submitted_by=SYSTEM</span>                      
+ <span class="r5"> 63 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ComplianceAuditorAgent    │                                          
+ <span class="r5"> 64 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ ForexStrategistAgent      │                                          
+ <span class="r5"> 65 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ LiquidityBalancerAgent    │                                          
+ <span class="r5"> 66 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r7">[A]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r7">AGENT_ANALYSIS_COMPLETE</span> │ RiskIntelligenceAgent     │                                          
+ <span class="r5"> 67 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r10">CASE_CREATED</span>            │ DecisionOrchestratorAgent │                                          
+ <span class="r5"> 68 </span>│<span class="r5"> 16:42:39.671 </span>│ <span class="r10">[C]</span>  │<span class="r6"> PAY-2026-0010 </span>│ <span class="r10">CASE_CREATED</span>            │ MaestroClient             │                                          
+     ╵              ╵      ╵               ╵                         ╵                           ╵                                          
+
+<span class="r3">                      Event Distribution                      </span>
+                                                              
+ <span class="r4"> Event Type                  </span> <span class="r4"> Count </span> <span class="r4"> Bar                  </span> 
+ ──────────────────────────────────────────────────────────── 
+  <span class="r7">[A] AGENT_ANALYSIS_COMPLETE</span>      40   <span class="r7">████████████████████</span>  
+  <span class="r6">-&gt; PAYMENT_RECEIVED</span>              10   <span class="r6">█████</span>░░░░░░░░░░░░░░░  
+  <span class="r10">[C] CASE_CREATED</span>                 10   <span class="r10">█████</span>░░░░░░░░░░░░░░░  
+  <span class="r8">[OK] AUTO_DECISION</span>                3   <span class="r8">█</span>░░░░░░░░░░░░░░░░░░░  
+  <span class="r8">[X] PAYMENT_EXECUTED</span>              3   <span class="r8">█</span>░░░░░░░░░░░░░░░░░░░  
+  <span class="r9">[B] PAYMENT_BLOCKED</span>               2   <span class="r9">█</span>░░░░░░░░░░░░░░░░░░░  
+                                                              
+
+<span class="r11">╭────────────────────────────────────────────────────────── </span><span class="r8">COMPLIANCE EVIDENCE</span><span class="r11"> ───────────────────────────────────────────────────────────╮</span>
+<span class="r11">│</span> <span class="r8">✓</span>  <span class="r4">Audit trail integrity confirmed.</span>  68 records across 10 payments.  All records are append-only and tamper-evident.                     <span class="r11">│</span>
+<span class="r11">╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #00ff00; text-decoration-color: #00ff00}
+.r2 {color: #800080; text-decoration-color: #800080; font-weight: bold}
+.r3 {font-style: italic}
+.r4 {font-weight: bold}
+.r5 {color: #008080; text-decoration-color: #008080}
+.r6 {color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #800000; font-weight: bold}
+.r7 {color: #800000; text-decoration-color: #800000; font-weight: bold}
+.r8 {color: #008000; text-decoration-color: #008000}
+.r9 {color: #7f7f7f; text-decoration-color: #7f7f7f}
+.r10 {color: #000000; text-decoration-color: #000000; background-color: #808000; font-weight: bold}
+.r11 {color: #008080; text-decoration-color: #008080; font-weight: bold}
+.r12 {color: #808000; text-decoration-color: #808000; font-weight: bold}
+.r13 {color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #ff8700; font-weight: bold}
+.r14 {color: #808000; text-decoration-color: #808000}
+.r15 {color: #800080; text-decoration-color: #800080}
+.r16 {color: #bf7fbf; text-decoration-color: #bf7fbf}
+.r17 {color: #800000; text-decoration-color: #800000}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">
+<span class="r1">───────────────────────────────────────────────────── </span><span class="r2"> UIPATH MAESTRO CASE MANAGEMENT </span><span class="r1"> ─────────────────────────────────────────────────────</span>
+
+<span class="r3">                                           Active Maestro Cases (5 open)                                            </span>
+╭─────────────┬────────────────┬──────────────┬──────┬────────────────────┬──────────┬──────────────┬───────┬──────╮
+│<span class="r4"> Case ID     </span>│<span class="r4"> Payment ID     </span>│<span class="r4"> Case Type    </span>│<span class="r4"> Pri  </span>│<span class="r4"> Assigned To        </span>│<span class="r4">   SLA    </span>│<span class="r4"> Trigger      </span>│<span class="r4"> Comp  </span>│<span class="r4"> Risk </span>│
+├─────────────┼────────────────┼──────────────┼──────┼────────────────────┼──────────┼──────────────┼───────┼──────┤
+│<span class="r2"> CASE-2041   </span>│<span class="r5"> PAY-2026-0004  </span>│ TreasuryPaym │ <span class="r6"> P1</span>  │<span class="r4"> </span><span class="r7">CFO</span><span class="r4">                </span>│  <span class="r8">7h 29m</span>  │<span class="r9"> MATERIALITY_ </span>│ <span class="r8">CLEAR</span> │ 26.6 │
+│<span class="r2"> CASE-2042   </span>│<span class="r5"> PAY-2026-0005  </span>│ TreasuryPaym │ <span class="r6"> P1</span>  │<span class="r4"> </span><span class="r7">CFO</span><span class="r4">                </span>│  <span class="r8">7h 06m</span>  │<span class="r9"> MATERIALITY_ </span>│ <span class="r8">CLEAR</span> │ 23.2 │
+│<span class="r2"> CASE-2043   </span>│<span class="r5"> PAY-2026-0006  </span>│ TreasuryPaym │ <span class="r10"> P3</span>  │<span class="r4"> </span><span class="r11">TREASURY MANAGER</span><span class="r4">   </span>│   <span class="r12">43m</span>    │<span class="r9"> LIQUIDITY_IN </span>│ <span class="r8">CLEAR</span> │ 20.0 │
+│<span class="r2"> CASE-2044   </span>│<span class="r5"> PAY-2026-0008  </span>│ TreasuryPaym │ <span class="r13"> P2</span>  │<span class="r4"> </span><span class="r12">COMPLIANCE OFFICER</span><span class="r4"> </span>│  <span class="r14">2h 20m</span>  │<span class="r9"> COMPLIANCE_F </span>│ <span class="r14">FLAG</span>  │ 19.3 │
+│<span class="r2"> CASE-2045   </span>│<span class="r5"> PAY-2026-0010  </span>│ TreasuryPaym │ <span class="r13"> P2</span>  │<span class="r4"> </span><span class="r12">COMPLIANCE OFFICER</span><span class="r4"> </span>│  <span class="r14">1h 57m</span>  │<span class="r9"> COMPLIANCE_F </span>│ <span class="r14">FLAG</span>  │ 23.3 │
+╰─────────────┴────────────────┴──────────────┴──────┴────────────────────┴──────────┴──────────────┴───────┴──────╯
+
+<span class="r15">╭────────────────────────────────────────────── </span><span class="r2">Evidence Bundle — CASE-2041 / PAY-2026-0004</span><span class="r15"> ───────────────────────────────────────────────╮</span>
+<span class="r15">│</span> <span class="r12">•  </span>Compliance Report — Decision: CLEAR, Sanctions hits: 0                                                                                <span class="r15">│</span>
+<span class="r15">│</span> <span class="r12">•  </span>Risk Assessment — Composite Score: 26.6/100                                                                                           <span class="r15">│</span>
+<span class="r15">│</span> <span class="r12">•  </span>FX Analysis — Provider: HSBC Global FX, Savings: $1,555.00                                                                            <span class="r15">│</span>
+<span class="r15">│</span> <span class="r12">•  </span>Liquidity Status — CONSTRAINED                                                                                                        <span class="r15">│</span>
+<span class="r15">│</span> <span class="r12">•  </span>AI Recommendation: Payment amount 2,600,000.00 EUR exceeds materiality threshold $1,000,000. CFO approval required.                   <span class="r15">│</span>
+<span class="r15">╰──────────────────────────────────── </span><span class="r16">AI-generated · Attached to Maestro Case · Available for reviewer</span><span class="r15"> ────────────────────────────────────╯</span>
+
+<span class="r3">                     Escalation Breakdown                     </span>
+                                                              
+ <span class="r4"> Assigned To        </span> <span class="r4"> Cases Open </span> <span class="r4"> Avg SLA (min) </span> <span class="r4"> Urgency  </span> 
+ ──────────────────────────────────────────────────────────── 
+ <span class="r4"> </span><span class="r7">CFO</span><span class="r4">                </span>      2                  480   <span class="r14">HIGH</span>      
+ <span class="r4"> </span><span class="r12">COMPLIANCE OFFICER</span><span class="r4"> </span>      2                  240   <span class="r14">HIGH</span>      
+ <span class="r4"> </span><span class="r11">TREASURY MANAGER</span><span class="r4">   </span>      1                  120   <span class="r17">CRITICAL</span>  
+                                                              
+
+</code></pre>
+</body>
+</html>

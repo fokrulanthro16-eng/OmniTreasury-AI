@@ -1,0 +1,2033 @@
+[
+  {
+    "id": "0F168ED9",
+    "filename": "test_swift.txt",
+    "saved_as": "20260615_0F168ED9_test_swift.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T18:12:39Z",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "SWIFT MT103",
+      "payment": {
+        "payment_id": "PAY-BC4397FE",
+        "amount": 25000.0,
+        "source_currency": "USD",
+        "target_currency": "USD",
+        "counterparty": "TEST VENDOR GMBH",
+        "bank_country": "UN",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "value_date": "2026-06-20",
+        "reference": "TXN-WEB-TEST-01"
+      },
+      "compliance": {
+        "decision": "CLEAR",
+        "confidence": 0.97,
+        "sanctions_matches": 0,
+        "aml_flags": 1,
+        "jurisdiction_risks": [],
+        "summary": "Decision: CLEAR. AML: 1 pattern flag(s) detected.",
+        "policy_references": [
+          "Bank Secrecy Act \u2014 31 CFR 103.22 Currency Transaction Report"
+        ]
+      },
+      "forex": {
+        "recommended_provider": "HSBC Global FX",
+        "recommended_rate": 0.9994,
+        "estimated_savings_usd": 12.5,
+        "timing": "EXECUTE_NOW",
+        "currency_pair": "USD/USD"
+      },
+      "liquidity": {
+        "status": "SUFFICIENT",
+        "available_balance": 1420000.0,
+        "post_payment_balance": 1395000.0,
+        "covenant_at_risk": false,
+        "recommended_action": "Sufficient liquidity. Proceed to FX execution.",
+        "netting_available": false
+      },
+      "risk": {
+        "composite_score": 23.3,
+        "risk_level": "LOW",
+        "limit_breaches": [],
+        "factor_scores": {
+          "COUNTERPARTY": 35.0,
+          "CONCENTRATION": 0.3,
+          "MARKET": 15.0,
+          "OPERATIONAL": 45.0
+        },
+        "mitigations": []
+      },
+      "decision": {
+        "decision": "AUTO_EXECUTE",
+        "escalation_level": null,
+        "execution_route": "HSBC Global FX",
+        "summary": "Payment approved for automatic execution. All compliance, risk, and liquidity checks passed.",
+        "confidence": 1.0
+      }
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "E4011680",
+    "filename": "gemini-code-1781253472178.txt",
+    "saved_as": "20260616_E4011680_gemini-code-1781253472178.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 69,
+    "uploaded_at": "2026-06-16T12:27:36Z",
+    "status": "uploaded",
+    "metadata": {
+      "transaction_ref": "",
+      "bank_operation": "CRED",
+      "currency": "",
+      "amount": "",
+      "value_date": "",
+      "ordering_customer": "",
+      "beneficiary": "",
+      "remittance_info": "",
+      "charges": "",
+      "field_count": 0
+    },
+    "preview_rows": [],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": [
+      "File does not appear to be a standard SWIFT MT103 message (no :20:, :32A:, or {4: block found). Proceeding with raw text storage."
+    ]
+  },
+  {
+    "id": "64743EB2",
+    "filename": "pipeline_test.txt",
+    "saved_as": "20260615_64743EB2_pipeline_test.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T18:12:39Z",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "SWIFT MT103",
+      "payment": {
+        "payment_id": "PAY-D0F33381",
+        "amount": 25000.0,
+        "source_currency": "USD",
+        "target_currency": "USD",
+        "counterparty": "TEST VENDOR GMBH",
+        "bank_country": "UN",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "value_date": "2026-06-20",
+        "reference": "TXN-WEB-TEST-01"
+      },
+      "compliance": {
+        "decision": "CLEAR",
+        "confidence": 0.97,
+        "sanctions_matches": 0,
+        "aml_flags": 1,
+        "jurisdiction_risks": [],
+        "summary": "Decision: CLEAR. AML: 1 pattern flag(s) detected.",
+        "policy_references": [
+          "Bank Secrecy Act \u2014 31 CFR 103.22 Currency Transaction Report"
+        ]
+      },
+      "forex": {
+        "recommended_provider": "Deutsche Bank FX",
+        "recommended_rate": 0.9991,
+        "estimated_savings_usd": 12.5,
+        "timing": "EXECUTE_NOW",
+        "currency_pair": "USD/USD"
+      },
+      "liquidity": {
+        "status": "SUFFICIENT",
+        "available_balance": 1420000.0,
+        "post_payment_balance": 1395000.0,
+        "covenant_at_risk": false,
+        "recommended_action": "Sufficient liquidity. Proceed to FX execution.",
+        "netting_available": false
+      },
+      "risk": {
+        "composite_score": 23.3,
+        "risk_level": "LOW",
+        "limit_breaches": [],
+        "factor_scores": {
+          "COUNTERPARTY": 35.0,
+          "CONCENTRATION": 0.3,
+          "MARKET": 15.0,
+          "OPERATIONAL": 45.0
+        },
+        "mitigations": []
+      },
+      "decision": {
+        "decision": "AUTO_EXECUTE",
+        "escalation_level": null,
+        "execution_route": "Deutsche Bank FX",
+        "summary": "Payment approved for automatic execution. All compliance, risk, and liquidity checks passed.",
+        "confidence": 1.0
+      }
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "946743C1",
+    "filename": "proc_csv.csv",
+    "saved_as": "20260615_946743C1_proc_csv.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T18:12:39Z",
+    "status": "processed",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "CSV Batch",
+      "status": "validated",
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "preview": [
+        {
+          "payment_id": "PAY-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "amount": "5000.00",
+          "counterparty_name": "Vendor A"
+        },
+        {
+          "payment_id": "PAY-002",
+          "source_entity": "CORP-HQ",
+          "source_currency": "EUR",
+          "amount": "3000.00",
+          "counterparty_name": "Vendor B"
+        }
+      ],
+      "message": "CSV validated. 2 payment records found. Total value: $8,000.00.",
+      "next_step": "Call POST /api/process-batch with this file to run the full OmniTreasury pipeline on each payment record."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "C6B9C2C4",
+    "filename": "proc_test.json",
+    "saved_as": "20260615_C6B9C2C4_proc_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T18:12:39Z",
+    "status": "processed",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "JSON Payment",
+      "status": "validated",
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "sample_records": [
+        {
+          "payment_id": "PAY-TEST-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "target_currency": "EUR",
+          "amount": 10000.0,
+          "counterparty_name": "Test Vendor",
+          "bank_country": "DE",
+          "purpose": "TRADE_PAYMENT",
+          "value_date": "2026-06-20"
+        }
+      ],
+      "message": "JSON validated. 1 payment records extracted. Total value: $10,000.00.",
+      "next_step": "Each JSON payment record can be individually submitted to the OmniTreasury pipeline via POST /api/upload."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "FE93D24F",
+    "filename": "payments.csv",
+    "saved_as": "20260615_FE93D24F_payments.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T18:12:39Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "44D18F05",
+    "filename": "batch_test.csv",
+    "saved_as": "20260615_44D18F05_batch_test.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T18:12:38Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "4B379EF4",
+    "filename": "hist_check_abc123.json",
+    "saved_as": "20260615_4B379EF4_hist_check_abc123.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T18:12:38Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "5BDFB478",
+    "filename": "payments_meta.json",
+    "saved_as": "20260615_5BDFB478_payments_meta.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T18:12:38Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "6956B2FC",
+    "filename": "payments_test.json",
+    "saved_as": "20260615_6956B2FC_payments_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T18:12:38Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "87FD5DDE",
+    "filename": "pipeline_test.txt",
+    "saved_as": "20260615_87FD5DDE_pipeline_test.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "SWIFT MT103",
+      "payment": {
+        "payment_id": "PAY-9B8A8051",
+        "amount": 25000.0,
+        "source_currency": "USD",
+        "target_currency": "USD",
+        "counterparty": "TEST VENDOR GMBH",
+        "bank_country": "UN",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "value_date": "2026-06-20",
+        "reference": "TXN-WEB-TEST-01"
+      },
+      "compliance": {
+        "decision": "CLEAR",
+        "confidence": 0.97,
+        "sanctions_matches": 0,
+        "aml_flags": 1,
+        "jurisdiction_risks": [],
+        "summary": "Decision: CLEAR. AML: 1 pattern flag(s) detected.",
+        "policy_references": [
+          "Bank Secrecy Act \u2014 31 CFR 103.22 Currency Transaction Report"
+        ]
+      },
+      "forex": {
+        "recommended_provider": "Deutsche Bank FX",
+        "recommended_rate": 0.9991,
+        "estimated_savings_usd": 7.5,
+        "timing": "EXECUTE_NOW",
+        "currency_pair": "USD/USD"
+      },
+      "liquidity": {
+        "status": "SUFFICIENT",
+        "available_balance": 1420000.0,
+        "post_payment_balance": 1395000.0,
+        "covenant_at_risk": false,
+        "recommended_action": "Sufficient liquidity. Proceed to FX execution.",
+        "netting_available": false
+      },
+      "risk": {
+        "composite_score": 23.3,
+        "risk_level": "LOW",
+        "limit_breaches": [],
+        "factor_scores": {
+          "COUNTERPARTY": 35.0,
+          "CONCENTRATION": 0.3,
+          "MARKET": 15.0,
+          "OPERATIONAL": 45.0
+        },
+        "mitigations": []
+      },
+      "decision": {
+        "decision": "AUTO_EXECUTE",
+        "escalation_level": null,
+        "execution_route": "Deutsche Bank FX",
+        "summary": "Payment approved for automatic execution. All compliance, risk, and liquidity checks passed.",
+        "confidence": 1.0
+      }
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "09C7F485",
+    "filename": "proc_csv.csv",
+    "saved_as": "20260615_09C7F485_proc_csv.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "processed",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "CSV Batch",
+      "status": "validated",
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "preview": [
+        {
+          "payment_id": "PAY-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "amount": "5000.00",
+          "counterparty_name": "Vendor A"
+        },
+        {
+          "payment_id": "PAY-002",
+          "source_entity": "CORP-HQ",
+          "source_currency": "EUR",
+          "amount": "3000.00",
+          "counterparty_name": "Vendor B"
+        }
+      ],
+      "message": "CSV validated. 2 payment records found. Total value: $8,000.00.",
+      "next_step": "Call POST /api/process-batch with this file to run the full OmniTreasury pipeline on each payment record."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "422B8ED0",
+    "filename": "proc_test.json",
+    "saved_as": "20260615_422B8ED0_proc_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "processed",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "JSON Payment",
+      "status": "validated",
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "sample_records": [
+        {
+          "payment_id": "PAY-TEST-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "target_currency": "EUR",
+          "amount": 10000.0,
+          "counterparty_name": "Test Vendor",
+          "bank_country": "DE",
+          "purpose": "TRADE_PAYMENT",
+          "value_date": "2026-06-20"
+        }
+      ],
+      "message": "JSON validated. 1 payment records extracted. Total value: $10,000.00.",
+      "next_step": "Each JSON payment record can be individually submitted to the OmniTreasury pipeline via POST /api/upload."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "62943610",
+    "filename": "test_swift.txt",
+    "saved_as": "20260615_62943610_test_swift.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "uploaded",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "AC27A52D",
+    "filename": "payments.csv",
+    "saved_as": "20260615_AC27A52D_payments.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "57A623EE",
+    "filename": "batch_test.csv",
+    "saved_as": "20260615_57A623EE_batch_test.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:59:52Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "C63D88F4",
+    "filename": "hist_check_abc123.json",
+    "saved_as": "20260615_C63D88F4_hist_check_abc123.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:59:51Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "73404809",
+    "filename": "payments_meta.json",
+    "saved_as": "20260615_73404809_payments_meta.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:59:51Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "966A0B0C",
+    "filename": "payments_test.json",
+    "saved_as": "20260615_966A0B0C_payments_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:59:51Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "3F9B7C87",
+    "filename": "pipeline_test.txt",
+    "saved_as": "20260615_3F9B7C87_pipeline_test.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "SWIFT MT103",
+      "payment": {
+        "payment_id": "PAY-EAAC9FD8",
+        "amount": 25000.0,
+        "source_currency": "USD",
+        "target_currency": "USD",
+        "counterparty": "TEST VENDOR GMBH",
+        "bank_country": "UN",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "value_date": "2026-06-20",
+        "reference": "TXN-WEB-TEST-01"
+      },
+      "compliance": {
+        "decision": "CLEAR",
+        "confidence": 0.97,
+        "sanctions_matches": 0,
+        "aml_flags": 1,
+        "jurisdiction_risks": [],
+        "summary": "Decision: CLEAR. AML: 1 pattern flag(s) detected.",
+        "policy_references": [
+          "Bank Secrecy Act \u2014 31 CFR 103.22 Currency Transaction Report"
+        ]
+      },
+      "forex": {
+        "recommended_provider": "JP Morgan Treasury",
+        "recommended_rate": 0.9997,
+        "estimated_savings_usd": 7.5,
+        "timing": "EXECUTE_NOW",
+        "currency_pair": "USD/USD"
+      },
+      "liquidity": {
+        "status": "SUFFICIENT",
+        "available_balance": 1420000.0,
+        "post_payment_balance": 1395000.0,
+        "covenant_at_risk": false,
+        "recommended_action": "Sufficient liquidity. Proceed to FX execution.",
+        "netting_available": false
+      },
+      "risk": {
+        "composite_score": 23.3,
+        "risk_level": "LOW",
+        "limit_breaches": [],
+        "factor_scores": {
+          "COUNTERPARTY": 35.0,
+          "CONCENTRATION": 0.3,
+          "MARKET": 15.0,
+          "OPERATIONAL": 45.0
+        },
+        "mitigations": []
+      },
+      "decision": {
+        "decision": "AUTO_EXECUTE",
+        "escalation_level": null,
+        "execution_route": "JP Morgan Treasury",
+        "summary": "Payment approved for automatic execution. All compliance, risk, and liquidity checks passed.",
+        "confidence": 1.0
+      }
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "B979F14D",
+    "filename": "proc_csv.csv",
+    "saved_as": "20260615_B979F14D_proc_csv.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "processed",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "CSV Batch",
+      "status": "validated",
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "preview": [
+        {
+          "payment_id": "PAY-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "amount": "5000.00",
+          "counterparty_name": "Vendor A"
+        },
+        {
+          "payment_id": "PAY-002",
+          "source_entity": "CORP-HQ",
+          "source_currency": "EUR",
+          "amount": "3000.00",
+          "counterparty_name": "Vendor B"
+        }
+      ],
+      "message": "CSV validated. 2 payment records found. Total value: $8,000.00.",
+      "next_step": "Call POST /api/process-batch with this file to run the full OmniTreasury pipeline on each payment record."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "901BE9E6",
+    "filename": "proc_test.json",
+    "saved_as": "20260615_901BE9E6_proc_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "processed",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "JSON Payment",
+      "status": "validated",
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "sample_records": [
+        {
+          "payment_id": "PAY-TEST-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "target_currency": "EUR",
+          "amount": 10000.0,
+          "counterparty_name": "Test Vendor",
+          "bank_country": "DE",
+          "purpose": "TRADE_PAYMENT",
+          "value_date": "2026-06-20"
+        }
+      ],
+      "message": "JSON validated. 1 payment records extracted. Total value: $10,000.00.",
+      "next_step": "Each JSON payment record can be individually submitted to the OmniTreasury pipeline via POST /api/upload."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "29A48122",
+    "filename": "test_swift.txt",
+    "saved_as": "20260615_29A48122_test_swift.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 225,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "uploaded",
+    "metadata": {
+      "transaction_ref": "TXN-WEB-TEST-01",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "25000.00",
+      "value_date": "2026-06-20",
+      "ordering_customer": "/ACC12345678\nCORP HEADQUARTERS",
+      "beneficiary": "/DE89370400440532013000\nTEST VENDOR GMBH",
+      "remittance_info": "INVOICE INV-2026-0099",
+      "charges": "SHA",
+      "field_count": 7
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-WEB-TEST-01"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260620USD25000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/ACC12345678\nCORP HEADQUARTERS"
+      },
+      {
+        "Field": "59",
+        "Value": "/DE89370400440532013000\nTEST VENDOR GMBH"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "70501E20",
+    "filename": "payments.csv",
+    "saved_as": "20260615_70501E20_payments.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "19B81916",
+    "filename": "batch_test.csv",
+    "saved_as": "20260615_19B81916_batch_test.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 140,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "uploaded",
+    "metadata": {
+      "row_count": 2,
+      "column_count": 5,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "counterparty_name"
+      ],
+      "payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ],
+      "total_amount": 8000.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "5000.00",
+        "counterparty_name": "Vendor A"
+      },
+      {
+        "payment_id": "PAY-002",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "3000.00",
+        "counterparty_name": "Vendor B"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "A1C76910",
+    "filename": "hist_check_abc123.json",
+    "saved_as": "20260615_A1C76910_hist_check_abc123.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:31:02Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "B446C91B",
+    "filename": "payments_meta.json",
+    "saved_as": "20260615_B446C91B_payments_meta.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:31:01Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "12735E7D",
+    "filename": "payments_test.json",
+    "saved_as": "20260615_12735E7D_payments_test.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 259,
+    "uploaded_at": "2026-06-15T15:31:01Z",
+    "status": "uploaded",
+    "metadata": {
+      "record_count": 1,
+      "payment_ids": [
+        "PAY-TEST-001"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "total_amount": 10000.0,
+      "top_level_keys": [
+        "payments"
+      ]
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-TEST-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "target_currency": "EUR",
+        "amount": 10000.0,
+        "counterparty_name": "Test Vendor",
+        "bank_country": "DE",
+        "purpose": "TRADE_PAYMENT",
+        "value_date": "2026-06-20"
+      }
+    ],
+    "processing_result": null,
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "DEMO0002",
+    "filename": "batch_payments_june_demo.csv",
+    "saved_as": "batch_payments_june_demo.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 1131,
+    "uploaded_at": "2026-06-15T08:35:00Z",
+    "status": "processed",
+    "metadata": {
+      "row_count": 8,
+      "column_count": 11,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "target_currency",
+        "counterparty_name",
+        "bank_country",
+        "value_date",
+        "purpose",
+        "urgency",
+        "submitted_by"
+      ],
+      "payment_ids": [
+        "PAY-BATCH-001",
+        "PAY-BATCH-002",
+        "PAY-BATCH-003",
+        "PAY-BATCH-004",
+        "PAY-BATCH-005",
+        "PAY-BATCH-006",
+        "PAY-BATCH-007",
+        "PAY-BATCH-008"
+      ],
+      "total_amount": 1495500.0
+    },
+    "preview_rows": [
+      {
+        "payment_id": "PAY-BATCH-001",
+        "source_entity": "CORP-HQ",
+        "source_currency": "EUR",
+        "amount": "75000.00",
+        "target_currency": "USD",
+        "counterparty_name": "Acme Supplies GmbH",
+        "bank_country": "DE",
+        "value_date": "2026-06-18",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "submitted_by": "treasury@nexusglobal.com"
+      },
+      {
+        "payment_id": "PAY-BATCH-002",
+        "source_entity": "CORP-EMEA",
+        "source_currency": "GBP",
+        "amount": "120000.00",
+        "target_currency": "USD",
+        "counterparty_name": "London Tech Partners Ltd",
+        "bank_country": "GB",
+        "value_date": "2026-06-18",
+        "purpose": "SERVICES",
+        "urgency": "T_PLUS_2",
+        "submitted_by": "emea.ops@nexusglobal.com"
+      },
+      {
+        "payment_id": "PAY-BATCH-003",
+        "source_entity": "CORP-APAC",
+        "source_currency": "SGD",
+        "amount": "35000.00",
+        "target_currency": "USD",
+        "counterparty_name": "Nexus Global Corporation",
+        "bank_country": "US",
+        "value_date": "2026-06-17",
+        "purpose": "DIVIDEND",
+        "urgency": "T_PLUS_2",
+        "submitted_by": "cfo.apac@nexusglobal.com"
+      },
+      {
+        "payment_id": "PAY-BATCH-004",
+        "source_entity": "CORP-HQ",
+        "source_currency": "USD",
+        "amount": "250000.00",
+        "target_currency": "EUR",
+        "counterparty_name": "Berlin Industrial KG",
+        "bank_country": "DE",
+        "value_date": "2026-06-19",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "submitted_by": "procurement@nexusglobal.com"
+      },
+      {
+        "payment_id": "PAY-BATCH-005",
+        "source_entity": "CORP-EMEA",
+        "source_currency": "EUR",
+        "amount": "45000.00",
+        "target_currency": "GBP",
+        "counterparty_name": "Edinburgh Logistics Ltd",
+        "bank_country": "GB",
+        "value_date": "2026-06-18",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_1",
+        "submitted_by": "emea.ops@nexusglobal.com"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "CSV Batch",
+      "status": "validated",
+      "row_count": 8,
+      "column_count": 11,
+      "columns": [
+        "payment_id",
+        "source_entity",
+        "source_currency",
+        "amount",
+        "target_currency",
+        "counterparty_name",
+        "bank_country",
+        "value_date",
+        "purpose",
+        "urgency",
+        "submitted_by"
+      ],
+      "payment_ids": [
+        "PAY-BATCH-001",
+        "PAY-BATCH-002",
+        "PAY-BATCH-003",
+        "PAY-BATCH-004",
+        "PAY-BATCH-005",
+        "PAY-BATCH-006",
+        "PAY-BATCH-007",
+        "PAY-BATCH-008"
+      ],
+      "total_amount": 1495500.0,
+      "preview": [
+        {
+          "payment_id": "PAY-BATCH-001",
+          "source_entity": "CORP-HQ",
+          "source_currency": "EUR",
+          "amount": "75000.00",
+          "target_currency": "USD",
+          "counterparty_name": "Acme Supplies GmbH",
+          "bank_country": "DE",
+          "value_date": "2026-06-18",
+          "purpose": "TRADE_PAYMENT",
+          "urgency": "T_PLUS_2",
+          "submitted_by": "treasury@nexusglobal.com"
+        },
+        {
+          "payment_id": "PAY-BATCH-002",
+          "source_entity": "CORP-EMEA",
+          "source_currency": "GBP",
+          "amount": "120000.00",
+          "target_currency": "USD",
+          "counterparty_name": "London Tech Partners Ltd",
+          "bank_country": "GB",
+          "value_date": "2026-06-18",
+          "purpose": "SERVICES",
+          "urgency": "T_PLUS_2",
+          "submitted_by": "emea.ops@nexusglobal.com"
+        },
+        {
+          "payment_id": "PAY-BATCH-003",
+          "source_entity": "CORP-APAC",
+          "source_currency": "SGD",
+          "amount": "35000.00",
+          "target_currency": "USD",
+          "counterparty_name": "Nexus Global Corporation",
+          "bank_country": "US",
+          "value_date": "2026-06-17",
+          "purpose": "DIVIDEND",
+          "urgency": "T_PLUS_2",
+          "submitted_by": "cfo.apac@nexusglobal.com"
+        },
+        {
+          "payment_id": "PAY-BATCH-004",
+          "source_entity": "CORP-HQ",
+          "source_currency": "USD",
+          "amount": "250000.00",
+          "target_currency": "EUR",
+          "counterparty_name": "Berlin Industrial KG",
+          "bank_country": "DE",
+          "value_date": "2026-06-19",
+          "purpose": "TRADE_PAYMENT",
+          "urgency": "T_PLUS_2",
+          "submitted_by": "procurement@nexusglobal.com"
+        },
+        {
+          "payment_id": "PAY-BATCH-005",
+          "source_entity": "CORP-EMEA",
+          "source_currency": "EUR",
+          "amount": "45000.00",
+          "target_currency": "GBP",
+          "counterparty_name": "Edinburgh Logistics Ltd",
+          "bank_country": "GB",
+          "value_date": "2026-06-18",
+          "purpose": "TRADE_PAYMENT",
+          "urgency": "T_PLUS_1",
+          "submitted_by": "emea.ops@nexusglobal.com"
+        }
+      ],
+      "message": "CSV validated. 8 payment records found. Total value: $1,495,500.00.",
+      "next_step": "Call POST /api/process-batch with this file to run the full OmniTreasury pipeline on each payment record."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "DEMO0003",
+    "filename": "treasury_payments_q2_demo.json",
+    "saved_as": "treasury_payments_q2_demo.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 2050,
+    "uploaded_at": "2026-06-15T08:40:00Z",
+    "status": "processed",
+    "metadata": {
+      "record_count": 4,
+      "payment_ids": [
+        "PAY-Q2-001",
+        "PAY-Q2-002",
+        "PAY-Q2-003",
+        "PAY-Q2-004"
+      ],
+      "currencies": [
+        "EUR",
+        "GBP",
+        "SGD",
+        "USD"
+      ],
+      "total_amount": 2995000.0
+    },
+    "preview_rows": [],
+    "processing_result": {
+      "pipeline": "JSON Payment",
+      "status": "validated",
+      "record_count": 4,
+      "payment_ids": [
+        "PAY-Q2-001",
+        "PAY-Q2-002",
+        "PAY-Q2-003",
+        "PAY-Q2-004"
+      ],
+      "currencies": [
+        "EUR",
+        "GBP",
+        "SGD",
+        "USD"
+      ],
+      "total_amount": 2995000.0,
+      "sample_records": [
+        {
+          "payment_id": "PAY-Q2-001",
+          "scenario": "CLEAN_PAYMENT",
+          "source_entity": "CORP-HQ",
+          "source_currency": "EUR",
+          "amount": 95000.0,
+          "target_currency": "USD",
+          "counterparty": {
+            "name": "Alpine Precision Engineering GmbH",
+            "bank_country": "CH",
+            "bank_swift_code": "UBSWCHZH"
+          },
+          "value_date": "2026-06-20",
+          "purpose": "TRADE_PAYMENT",
+          "urgency": "T_PLUS_2"
+        },
+        {
+          "payment_id": "PAY-Q2-002",
+          "scenario": "HIGH_VALUE_CFO",
+          "source_entity": "CORP-EMEA",
+          "source_currency": "GBP",
+          "amount": 2100000.0,
+          "target_currency": "USD",
+          "counterparty": {
+            "name": "Manchester Industrial Holdings PLC",
+            "bank_country": "GB",
+            "bank_swift_code": "NWBKGB2L"
+          },
+          "value_date": "2026-06-21",
+          "purpose": "ACQUISITION",
+          "urgency": "FLEXIBLE"
+        },
+        {
+          "payment_id": "PAY-Q2-003",
+          "scenario": "INTERCOMPANY",
+          "source_entity": "CORP-APAC",
+          "source_currency": "SGD",
+          "amount": 480000.0,
+          "target_currency": "USD",
+          "counterparty": {
+            "name": "Nexus Global Corporation",
+            "bank_country": "US",
+            "bank_swift_code": "CHASUS33"
+          },
+          "value_date": "2026-06-18",
+          "purpose": "DIVIDEND",
+          "urgency": "T_PLUS_2"
+        }
+      ],
+      "message": "JSON validated. 4 payment records extracted. Total value: $2,995,000.00.",
+      "next_step": "Each JSON payment record can be individually submitted to the OmniTreasury pipeline via POST /api/upload."
+    },
+    "processing_error": null,
+    "warnings": []
+  },
+  {
+    "id": "DEMO0001",
+    "filename": "sample_swift_mt103_demo.txt",
+    "saved_as": "sample_swift_mt103_demo.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 410,
+    "uploaded_at": "2026-06-15T08:30:00Z",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-2026-DEMO-001",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "50000.00",
+      "value_date": "2026-06-17",
+      "ordering_customer": "/DE89370400440532013000\nNEXUS GLOBAL CORPORATION\nFRANKFURT AM MAIN\nGERMANY",
+      "beneficiary": "/US0900040012345678\nACME MANUFACTURING INC\nNEW YORK NY 10001\nUNITED STATES",
+      "remittance_info": "INV-2026-ACM-DEMO-001 TRADE PAYMENT Q2 2026",
+      "charges": "SHA",
+      "field_count": 10
+    },
+    "preview_rows": [
+      {
+        "Field": "20",
+        "Value": "TXN-2026-DEMO-001"
+      },
+      {
+        "Field": "23B",
+        "Value": "CRED"
+      },
+      {
+        "Field": "32A",
+        "Value": "260617USD50000,00"
+      },
+      {
+        "Field": "50K",
+        "Value": "/DE89370400440532013000\nNEXUS GLOBAL CORPORATION"
+      },
+      {
+        "Field": "59",
+        "Value": "/US0900040012345678\nACME MANUFACTURING INC"
+      }
+    ],
+    "processing_result": {
+      "pipeline": "SWIFT MT103",
+      "payment": {
+        "payment_id": "PAY-E01C18C5",
+        "amount": 50000.0,
+        "source_currency": "USD",
+        "target_currency": "USD",
+        "counterparty": "ACME MANUFACTURING INC",
+        "bank_country": "US",
+        "purpose": "TRADE_PAYMENT",
+        "urgency": "T_PLUS_2",
+        "value_date": "2026-06-17",
+        "reference": "TXN-2026-DEMO-001"
+      },
+      "compliance": {
+        "decision": "CLEAR",
+        "confidence": 0.97,
+        "sanctions_matches": 0,
+        "aml_flags": 2,
+        "jurisdiction_risks": [],
+        "summary": "Decision: CLEAR. AML: 2 pattern flag(s) detected.",
+        "policy_references": [
+          "Bank Secrecy Act \u2014 31 CFR 103.22 Currency Transaction Report"
+        ]
+      },
+      "forex": {
+        "recommended_provider": "JP Morgan Treasury",
+        "recommended_rate": 0.9997,
+        "estimated_savings_usd": 15.0,
+        "timing": "EXECUTE_NOW",
+        "currency_pair": "USD/USD"
+      },
+      "liquidity": {
+        "status": "SUFFICIENT",
+        "available_balance": 1420000.0,
+        "post_payment_balance": 1370000.0,
+        "covenant_at_risk": false,
+        "recommended_action": "Sufficient liquidity. Proceed to FX execution.",
+        "netting_available": false
+      },
+      "risk": {
+        "composite_score": 23.4,
+        "risk_level": "LOW",
+        "limit_breaches": [],
+        "factor_scores": {
+          "COUNTERPARTY": 35.0,
+          "CONCENTRATION": 0.6,
+          "MARKET": 15.0,
+          "OPERATIONAL": 45.0
+        },
+        "mitigations": []
+      },
+      "decision": {
+        "decision": "AUTO_EXECUTE",
+        "escalation_level": null,
+        "execution_route": "JP Morgan Treasury",
+        "summary": "Payment approved for automatic execution. All compliance, risk, and liquidity checks passed.",
+        "confidence": 1.0
+      }
+    },
+    "processing_error": null,
+    "warnings": []
+  }
+]

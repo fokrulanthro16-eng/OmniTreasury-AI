@@ -1,0 +1,109 @@
+[
+  {
+    "upload_id": "F4A2C891",
+    "original_name": "sample_swift_mt103_demo.txt",
+    "saved_name": "20260615_F4A2C891_sample_swift_mt103_demo.txt",
+    "file_type": "SWIFT MT103",
+    "extension": ".txt",
+    "size_bytes": 512,
+    "uploaded_at": "2026-06-15T07:42:01Z",
+    "uploaded_by": "treasury@nexusglobal.com",
+    "status": "processed",
+    "metadata": {
+      "transaction_ref": "TXN-2026-DEMO-001",
+      "bank_operation": "CRED",
+      "currency": "USD",
+      "amount": "50000.00",
+      "value_date": "2026-06-17",
+      "ordering_customer": "NEXUS GLOBAL CORPORATION\nFRANKFURT AM MAIN\nGERMANY",
+      "beneficiary": "ACME MANUFACTURING INC\nNEW YORK NY 10001",
+      "remittance_info": "INV-2026-ACM-DEMO-001 TRADE PAYMENT Q2 2026",
+      "charges": "SHA",
+      "field_count": 10
+    },
+    "preview_rows": [
+      {"Field": "20", "Value": "TXN-2026-DEMO-001"},
+      {"Field": "23B", "Value": "CRED"},
+      {"Field": "32A", "Value": "260617USD50000,00"},
+      {"Field": "50K", "Value": "/DE89370400440532013000"},
+      {"Field": "57A", "Value": "CHASUS33"},
+      {"Field": "59", "Value": "/US0900040012345678"},
+      {"Field": "70", "Value": "INV-2026-ACM-DEMO-001 TRADE PAYMENT Q2 2026"},
+      {"Field": "71A", "Value": "SHA"}
+    ],
+    "errors": []
+  },
+  {
+    "upload_id": "B7D3E156",
+    "original_name": "batch_payments_june_demo.csv",
+    "saved_name": "20260615_B7D3E156_batch_payments_june_demo.csv",
+    "file_type": "CSV Batch",
+    "extension": ".csv",
+    "size_bytes": 1024,
+    "uploaded_at": "2026-06-15T07:38:22Z",
+    "uploaded_by": "emea.ops@nexusglobal.com",
+    "status": "processed",
+    "metadata": {
+      "row_count": 8,
+      "column_count": 11,
+      "columns": ["payment_id","source_entity","source_currency","amount","target_currency","counterparty_name","bank_country","value_date","purpose","urgency","submitted_by"],
+      "payment_ids": ["PAY-BATCH-001","PAY-BATCH-002","PAY-BATCH-003","PAY-BATCH-004","PAY-BATCH-005","PAY-BATCH-006","PAY-BATCH-007","PAY-BATCH-008"],
+      "total_amount": 1495500.0,
+      "id_column": "payment_id",
+      "amount_column": "amount"
+    },
+    "preview_rows": [
+      {"payment_id": "PAY-BATCH-001", "source_currency": "EUR", "amount": "75000.00", "counterparty_name": "Acme Supplies GmbH", "bank_country": "DE"},
+      {"payment_id": "PAY-BATCH-002", "source_currency": "GBP", "amount": "120000.00", "counterparty_name": "London Tech Partners Ltd", "bank_country": "GB"},
+      {"payment_id": "PAY-BATCH-003", "source_currency": "SGD", "amount": "35000.00", "counterparty_name": "Nexus Global Corporation", "bank_country": "US"},
+      {"payment_id": "PAY-BATCH-004", "source_currency": "USD", "amount": "250000.00", "counterparty_name": "Berlin Industrial KG", "bank_country": "DE"},
+      {"payment_id": "PAY-BATCH-005", "source_currency": "EUR", "amount": "45000.00", "counterparty_name": "Edinburgh Logistics Ltd", "bank_country": "GB"}
+    ],
+    "errors": []
+  },
+  {
+    "upload_id": "A1C9F024",
+    "original_name": "treasury_payments_q2_demo.json",
+    "saved_name": "20260615_A1C9F024_treasury_payments_q2_demo.json",
+    "file_type": "JSON Payment",
+    "extension": ".json",
+    "size_bytes": 1876,
+    "uploaded_at": "2026-06-15T07:31:45Z",
+    "uploaded_by": "cfo@nexusglobal.com",
+    "status": "processed",
+    "metadata": {
+      "record_count": 4,
+      "payment_ids": ["PAY-Q2-001","PAY-Q2-002","PAY-Q2-003","PAY-Q2-004"],
+      "currencies": ["EUR","GBP","SGD","USD"],
+      "total_amount": 2995000.0,
+      "top_level_keys": ["_comment","batch_id","uploaded_at","submitted_by","payments"]
+    },
+    "preview_rows": [
+      {"payment_id": "PAY-Q2-001", "source_currency": "EUR", "amount": 95000.0, "scenario": "CLEAN_PAYMENT"},
+      {"payment_id": "PAY-Q2-002", "source_currency": "GBP", "amount": 2100000.0, "scenario": "HIGH_VALUE_CFO"},
+      {"payment_id": "PAY-Q2-003", "source_currency": "SGD", "amount": 480000.0, "scenario": "INTERCOMPANY"},
+      {"payment_id": "PAY-Q2-004", "source_currency": "USD", "amount": 320000.0, "scenario": "FX_VOLATILE"}
+    ],
+    "errors": []
+  },
+  {
+    "upload_id": "D5E8B312",
+    "original_name": "board_treasury_report_june2026.pdf",
+    "saved_name": "20260615_D5E8B312_board_treasury_report_june2026.pdf",
+    "file_type": "PDF Document",
+    "extension": ".pdf",
+    "size_bytes": 284672,
+    "uploaded_at": "2026-06-15T07:18:09Z",
+    "uploaded_by": "cfo@nexusglobal.com",
+    "status": "processed",
+    "metadata": {
+      "is_valid_pdf": true,
+      "title": "Treasury Operations Report — June 2026",
+      "author": "CFO Office",
+      "estimated_pages": 12,
+      "size_kb": 278.0
+    },
+    "preview_rows": [],
+    "errors": []
+  }
+]

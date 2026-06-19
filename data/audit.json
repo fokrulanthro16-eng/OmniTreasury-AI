@@ -1,0 +1,745 @@
+[
+  {
+    "event_id": "3f1a4b90-b3f9-4819-83fe-d6990f7caafb",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:56.381053+00:00",
+    "actor": "system",
+    "upload_id": "D997CDCC",
+    "case_id": null,
+    "description": "File uploaded: to_delete.json (259 B)",
+    "details": {
+      "filename": "to_delete.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "d9b827ee-90d2-40ee-8a25-2082e685a53e",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T13:51:56.325378+00:00",
+    "actor": "system",
+    "upload_id": "2BF6DC67",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "5813bbc1-6a0d-451c-a041-0a36a0c05d54",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:56.222580+00:00",
+    "actor": "system",
+    "upload_id": "2BF6DC67",
+    "case_id": null,
+    "description": "File uploaded: pipeline_test.txt (225 B)",
+    "details": {
+      "filename": "pipeline_test.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "7eacbed4-4db8-4158-8733-da034e002d7f",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T13:51:56.191452+00:00",
+    "actor": "system",
+    "upload_id": "7AD9E89B",
+    "case_id": null,
+    "description": "Pipeline complete: CSV Batch",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "5501146a-66ce-4613-a335-47f97e5115dd",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:56.124774+00:00",
+    "actor": "system",
+    "upload_id": "7AD9E89B",
+    "case_id": null,
+    "description": "File uploaded: proc_csv.csv (140 B)",
+    "details": {
+      "filename": "proc_csv.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "6e37f7d9-ae7d-45d6-8631-a7e2a0ca97e4",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T13:51:56.080882+00:00",
+    "actor": "system",
+    "upload_id": "B4154A46",
+    "case_id": null,
+    "description": "Pipeline complete: JSON Payment",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "d7f7664c-247a-45a9-83c2-26c49bf94ac7",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:56.041677+00:00",
+    "actor": "system",
+    "upload_id": "B4154A46",
+    "case_id": null,
+    "description": "File uploaded: proc_test.json (259 B)",
+    "details": {
+      "filename": "proc_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "2b604cc0-ac85-4fca-8df3-307dccb926bb",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.988261+00:00",
+    "actor": "system",
+    "upload_id": "E605C944",
+    "case_id": null,
+    "description": "File uploaded: test_swift.txt (225 B)",
+    "details": {
+      "filename": "test_swift.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "fe21e184-f048-4e4d-913c-65bf8c7c05a2",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.964245+00:00",
+    "actor": "system",
+    "upload_id": "79908BEA",
+    "case_id": null,
+    "description": "File uploaded: payments.csv (140 B)",
+    "details": {
+      "filename": "payments.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "073332cc-9ce9-4ed3-810d-caab2ee62efc",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.929556+00:00",
+    "actor": "system",
+    "upload_id": "B362C5F6",
+    "case_id": null,
+    "description": "File uploaded: batch_test.csv (140 B)",
+    "details": {
+      "filename": "batch_test.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "29a2f9ca-46bd-4fbb-9786-414f3bb8f66c",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.865474+00:00",
+    "actor": "system",
+    "upload_id": "7AB95CC5",
+    "case_id": null,
+    "description": "File uploaded: hist_check_abc123.json (259 B)",
+    "details": {
+      "filename": "hist_check_abc123.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "08166ac6-d0e2-4a3a-8ee1-4322419dc78f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.814848+00:00",
+    "actor": "system",
+    "upload_id": "7AFDF91F",
+    "case_id": null,
+    "description": "File uploaded: payments_meta.json (259 B)",
+    "details": {
+      "filename": "payments_meta.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "d2300c18-43e4-4b45-a757-b9b4525c7d4f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T13:51:55.792602+00:00",
+    "actor": "system",
+    "upload_id": "A4A02C3D",
+    "case_id": null,
+    "description": "File uploaded: payments_test.json (259 B)",
+    "details": {
+      "filename": "payments_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "b5cf1749-e0d1-4fa9-a91a-186bdc60c4e5",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:47.229422+00:00",
+    "actor": "system",
+    "upload_id": "12B34727",
+    "case_id": null,
+    "description": "File uploaded: to_delete.json (259 B)",
+    "details": {
+      "filename": "to_delete.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "4af0498f-e016-4f5e-b0c5-95f882aa1850",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:43:47.137079+00:00",
+    "actor": "system",
+    "upload_id": "839EE67B",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "ee513151-ff6f-4dde-b880-5f3e0e2be4f0",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:47.073580+00:00",
+    "actor": "system",
+    "upload_id": "839EE67B",
+    "case_id": null,
+    "description": "File uploaded: pipeline_test.txt (225 B)",
+    "details": {
+      "filename": "pipeline_test.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "0d0f776e-221d-48e5-a1ee-18b04635a46b",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:43:47.031030+00:00",
+    "actor": "system",
+    "upload_id": "FC47E8A4",
+    "case_id": null,
+    "description": "Pipeline complete: CSV Batch",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "d990c4ec-3525-4c07-b29d-9a326286b158",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:47.005687+00:00",
+    "actor": "system",
+    "upload_id": "FC47E8A4",
+    "case_id": null,
+    "description": "File uploaded: proc_csv.csv (140 B)",
+    "details": {
+      "filename": "proc_csv.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "37a44641-2a3a-4c53-b9a6-47ea244787b7",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:43:46.946625+00:00",
+    "actor": "system",
+    "upload_id": "78814D82",
+    "case_id": null,
+    "description": "Pipeline complete: JSON Payment",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "899e17aa-a7c8-4a52-9fe7-fb0d11ffd5d3",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.912619+00:00",
+    "actor": "system",
+    "upload_id": "78814D82",
+    "case_id": null,
+    "description": "File uploaded: proc_test.json (259 B)",
+    "details": {
+      "filename": "proc_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "edf9a14d-6ef8-4d85-a5cd-d49c21660445",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.846492+00:00",
+    "actor": "system",
+    "upload_id": "2E34041F",
+    "case_id": null,
+    "description": "File uploaded: test_swift.txt (225 B)",
+    "details": {
+      "filename": "test_swift.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "9bb7a2de-55c0-4363-b1a6-b63764d9c85b",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.804045+00:00",
+    "actor": "system",
+    "upload_id": "08E6E829",
+    "case_id": null,
+    "description": "File uploaded: payments.csv (140 B)",
+    "details": {
+      "filename": "payments.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "55219da3-97cd-4ed8-86be-2e4b43c51aff",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.756458+00:00",
+    "actor": "system",
+    "upload_id": "092EB444",
+    "case_id": null,
+    "description": "File uploaded: batch_test.csv (140 B)",
+    "details": {
+      "filename": "batch_test.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "fe4cb71b-4c46-455f-a61c-2189279c5b2f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.692802+00:00",
+    "actor": "system",
+    "upload_id": "39E2EC32",
+    "case_id": null,
+    "description": "File uploaded: hist_check_abc123.json (259 B)",
+    "details": {
+      "filename": "hist_check_abc123.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "8aa35f16-d8d6-469b-ad86-69b83717296a",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.638869+00:00",
+    "actor": "system",
+    "upload_id": "1FCC5DE5",
+    "case_id": null,
+    "description": "File uploaded: payments_meta.json (259 B)",
+    "details": {
+      "filename": "payments_meta.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "c06154d5-c255-4fd0-a1fa-b53531131396",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:43:46.611629+00:00",
+    "actor": "system",
+    "upload_id": "96A68A1E",
+    "case_id": null,
+    "description": "File uploaded: payments_test.json (259 B)",
+    "details": {
+      "filename": "payments_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "620d8b37-ba62-4e75-ae98-efa43c5cdce8",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.448914+00:00",
+    "actor": "system",
+    "upload_id": "824C9844",
+    "case_id": null,
+    "description": "File uploaded: to_delete.json (259 B)",
+    "details": {
+      "filename": "to_delete.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "6a4a1ed3-151a-4383-8d54-72d6a5be9afb",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:42:41.403745+00:00",
+    "actor": "system",
+    "upload_id": "74B69BF5",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "e04f5864-d3ca-4af2-bd42-c5a6162a37d4",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.370123+00:00",
+    "actor": "system",
+    "upload_id": "74B69BF5",
+    "case_id": null,
+    "description": "File uploaded: pipeline_test.txt (225 B)",
+    "details": {
+      "filename": "pipeline_test.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "351d0d88-41cc-4171-8a6b-7f354221c27a",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:42:41.344474+00:00",
+    "actor": "system",
+    "upload_id": "E172C7D8",
+    "case_id": null,
+    "description": "Pipeline complete: CSV Batch",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "71eebd24-015b-4aa9-908c-3a22001386b3",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.308602+00:00",
+    "actor": "system",
+    "upload_id": "E172C7D8",
+    "case_id": null,
+    "description": "File uploaded: proc_csv.csv (140 B)",
+    "details": {
+      "filename": "proc_csv.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "40244f5f-5540-4de8-99bd-8f3436a6e11d",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:42:41.282516+00:00",
+    "actor": "system",
+    "upload_id": "8E0090E6",
+    "case_id": null,
+    "description": "Pipeline complete: JSON Payment",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "77dc72ec-fe76-402c-9cba-16506825c859",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.245963+00:00",
+    "actor": "system",
+    "upload_id": "8E0090E6",
+    "case_id": null,
+    "description": "File uploaded: proc_test.json (259 B)",
+    "details": {
+      "filename": "proc_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "24349607-8434-4623-924f-13abb139af63",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.210111+00:00",
+    "actor": "system",
+    "upload_id": "CA58E68E",
+    "case_id": null,
+    "description": "File uploaded: test_swift.txt (225 B)",
+    "details": {
+      "filename": "test_swift.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "56175022-515e-47df-8563-3338999092c3",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.178441+00:00",
+    "actor": "system",
+    "upload_id": "9C1B6352",
+    "case_id": null,
+    "description": "File uploaded: payments.csv (140 B)",
+    "details": {
+      "filename": "payments.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "801976a2-9812-4d68-92a8-5e1322e9a5b2",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.148403+00:00",
+    "actor": "system",
+    "upload_id": "84F066A7",
+    "case_id": null,
+    "description": "File uploaded: batch_test.csv (140 B)",
+    "details": {
+      "filename": "batch_test.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "f8a8a306-ae91-4371-8e14-d8dab8955c8a",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.107824+00:00",
+    "actor": "system",
+    "upload_id": "0D208D4E",
+    "case_id": null,
+    "description": "File uploaded: hist_check_abc123.json (259 B)",
+    "details": {
+      "filename": "hist_check_abc123.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "41f21fb3-560d-488f-a9ba-943a1ee6b596",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.075207+00:00",
+    "actor": "system",
+    "upload_id": "DCE8D9CD",
+    "case_id": null,
+    "description": "File uploaded: payments_meta.json (259 B)",
+    "details": {
+      "filename": "payments_meta.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "b5b836b4-0da7-4319-bedb-d9028b4b764e",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:42:41.041446+00:00",
+    "actor": "system",
+    "upload_id": "0ED75749",
+    "case_id": null,
+    "description": "File uploaded: payments_test.json (259 B)",
+    "details": {
+      "filename": "payments_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "18ef0dcc-ed65-4c93-b62f-bc385894a245",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-16T12:27:47.880189+00:00",
+    "actor": "system",
+    "upload_id": "0F168ED9",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "376d6611-169a-43eb-a4cc-bd618050a5f0",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-16T12:27:36.358364+00:00",
+    "actor": "system",
+    "upload_id": "E4011680",
+    "case_id": null,
+    "description": "File uploaded: gemini-code-1781253472178.txt (69 B)",
+    "details": {
+      "filename": "gemini-code-1781253472178.txt",
+      "size_bytes": 69,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "53061c06-f575-4add-b811-4b38bfce6842",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.565586+00:00",
+    "actor": "system",
+    "upload_id": "B3E47866",
+    "case_id": null,
+    "description": "File uploaded: to_delete.json (259 B)",
+    "details": {
+      "filename": "to_delete.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "3522e6d2-7692-4fce-ad93-db4cc1d3fb91",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.489639+00:00",
+    "actor": "system",
+    "upload_id": "64743EB2",
+    "case_id": null,
+    "description": "Pipeline complete: SWIFT MT103 \u2192 AUTO_EXECUTE (risk 23.3)",
+    "details": {
+      "decision": "AUTO_EXECUTE",
+      "risk_score": 23.3
+    }
+  },
+  {
+    "event_id": "13ba1b3b-99a6-466d-b1ba-cc51893c79f1",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.379488+00:00",
+    "actor": "system",
+    "upload_id": "64743EB2",
+    "case_id": null,
+    "description": "File uploaded: pipeline_test.txt (225 B)",
+    "details": {
+      "filename": "pipeline_test.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "b583d7dd-a01e-411d-8137-29ec64743249",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.341633+00:00",
+    "actor": "system",
+    "upload_id": "946743C1",
+    "case_id": null,
+    "description": "Pipeline complete: CSV Batch",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "58285e6d-cd0a-41b4-97d8-e1c367ebd19f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.287881+00:00",
+    "actor": "system",
+    "upload_id": "946743C1",
+    "case_id": null,
+    "description": "File uploaded: proc_csv.csv (140 B)",
+    "details": {
+      "filename": "proc_csv.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "aa500d7c-9b53-461c-b555-747e961caea3",
+    "event_type": "PIPELINE_COMPLETE",
+    "timestamp": "2026-06-15T18:12:39.240315+00:00",
+    "actor": "system",
+    "upload_id": "C6B9C2C4",
+    "case_id": null,
+    "description": "Pipeline complete: JSON Payment",
+    "details": {
+      "decision": "",
+      "risk_score": null
+    }
+  },
+  {
+    "event_id": "c18834d1-01d4-409b-83f9-d0a77b30f275",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.180302+00:00",
+    "actor": "system",
+    "upload_id": "C6B9C2C4",
+    "case_id": null,
+    "description": "File uploaded: proc_test.json (259 B)",
+    "details": {
+      "filename": "proc_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "d88d8b31-6694-4eba-84a9-4be33bf7b7e2",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.083227+00:00",
+    "actor": "system",
+    "upload_id": "0F168ED9",
+    "case_id": null,
+    "description": "File uploaded: test_swift.txt (225 B)",
+    "details": {
+      "filename": "test_swift.txt",
+      "size_bytes": 225,
+      "file_type": "SWIFT MT103"
+    }
+  },
+  {
+    "event_id": "6a162cc3-83c9-477f-b586-3f17b9783bd9",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:39.044241+00:00",
+    "actor": "system",
+    "upload_id": "FE93D24F",
+    "case_id": null,
+    "description": "File uploaded: payments.csv (140 B)",
+    "details": {
+      "filename": "payments.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "4fc0ea3f-395e-4d07-95aa-d19aaec6bc28",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.982314+00:00",
+    "actor": "system",
+    "upload_id": "44D18F05",
+    "case_id": null,
+    "description": "File uploaded: batch_test.csv (140 B)",
+    "details": {
+      "filename": "batch_test.csv",
+      "size_bytes": 140,
+      "file_type": "CSV Batch"
+    }
+  },
+  {
+    "event_id": "73792b3e-43e9-448f-aeed-8d6368c6d382",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.933057+00:00",
+    "actor": "system",
+    "upload_id": "4B379EF4",
+    "case_id": null,
+    "description": "File uploaded: hist_check_abc123.json (259 B)",
+    "details": {
+      "filename": "hist_check_abc123.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "48fb4142-a31a-419f-a743-9d6222da3825",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.882833+00:00",
+    "actor": "system",
+    "upload_id": "5BDFB478",
+    "case_id": null,
+    "description": "File uploaded: payments_meta.json (259 B)",
+    "details": {
+      "filename": "payments_meta.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  },
+  {
+    "event_id": "b913e6b8-2530-4ad6-9b0d-84b0c4e06c1f",
+    "event_type": "FILE_UPLOADED",
+    "timestamp": "2026-06-15T18:12:38.856002+00:00",
+    "actor": "system",
+    "upload_id": "6956B2FC",
+    "case_id": null,
+    "description": "File uploaded: payments_test.json (259 B)",
+    "details": {
+      "filename": "payments_test.json",
+      "size_bytes": 259,
+      "file_type": "JSON Payment"
+    }
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "_comment": "Demo upload — Q2 2026 treasury payment batch uploaded via OmniTreasury AI dashboard",
+  "batch_id": "BATCH-Q2-2026-DEMO",
+  "uploaded_at": "2026-06-15T07:31:00Z",
+  "submitted_by": "cfo@nexusglobal.com",
+  "payments": [
+    {
+      "payment_id": "PAY-Q2-001",
+      "scenario": "CLEAN_PAYMENT",
+      "source_entity": "CORP-HQ",
+      "source_currency": "EUR",
+      "amount": 95000.00,
+      "target_currency": "USD",
+      "counterparty": {
+        "name": "Alpine Precision Engineering GmbH",
+        "bank_country": "CH",
+        "bank_swift_code": "UBSWCHZH"
+      },
+      "value_date": "2026-06-20",
+      "purpose": "TRADE_PAYMENT",
+      "urgency": "T_PLUS_2"
+    },
+    {
+      "payment_id": "PAY-Q2-002",
+      "scenario": "HIGH_VALUE_CFO",
+      "source_entity": "CORP-EMEA",
+      "source_currency": "GBP",
+      "amount": 2100000.00,
+      "target_currency": "USD",
+      "counterparty": {
+        "name": "Manchester Industrial Holdings PLC",
+        "bank_country": "GB",
+        "bank_swift_code": "NWBKGB2L"
+      },
+      "value_date": "2026-06-21",
+      "purpose": "ACQUISITION",
+      "urgency": "FLEXIBLE"
+    },
+    {
+      "payment_id": "PAY-Q2-003",
+      "scenario": "INTERCOMPANY",
+      "source_entity": "CORP-APAC",
+      "source_currency": "SGD",
+      "amount": 480000.00,
+      "target_currency": "USD",
+      "counterparty": {
+        "name": "Nexus Global Corporation",
+        "bank_country": "US",
+        "bank_swift_code": "CHASUS33"
+      },
+      "value_date": "2026-06-18",
+      "purpose": "DIVIDEND",
+      "urgency": "T_PLUS_2"
+    },
+    {
+      "payment_id": "PAY-Q2-004",
+      "scenario": "FX_VOLATILE",
+      "source_entity": "CORP-HQ",
+      "source_currency": "USD",
+      "amount": 320000.00,
+      "target_currency": "BRL",
+      "counterparty": {
+        "name": "Brasil Componentes SA",
+        "bank_country": "BR",
+        "bank_swift_code": "BRASBRRJBHE"
+      },
+      "value_date": "2026-06-19",
+      "purpose": "TRADE_PAYMENT",
+      "urgency": "T_PLUS_2"
+    }
+  ]
+}
