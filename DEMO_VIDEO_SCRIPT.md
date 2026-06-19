@@ -1,5 +1,104 @@
 # OmniTreasury AI — Demo Video Script
 
+**UiPath AgentHack 2026**
+
+---
+
+## 60–90 Second Script (Primary Submission Cut)
+
+> Use this for the Devpost video embed. Tight, judge-focused, proof-first.
+
+### Pre-recording setup (30 seconds before hitting record)
+
+```bash
+python scripts/reset_demo_data.py
+python -m uvicorn src.web.app:app --reload
+```
+
+Open browser to `http://localhost:8000`. Zoom to 125%. Have the Swagger UI open in a second tab at `http://localhost:8000/api/docs`.
+
+---
+
+### [0:00 – 0:08] Hook
+
+**[SCREEN: Dashboard — KPI tiles fully loaded]**
+
+**NARRATION:**
+> "Cross-border payments touch compliance, FX, liquidity, and risk — simultaneously. OmniTreasury AI runs all four engines in under one second, then either auto-executes the payment or hands it to UiPath Maestro with the complete evidence bundle."
+
+---
+
+### [0:08 – 0:28] Live Pipeline — riskScore 23, REVIEW
+
+**[SCREEN: Switch to Upload Center. Click Process on the JSON payment file.]**
+
+**NARRATION:**
+> "Watch the five-engine pipeline run."
+
+*[Wait 1 second for result to render.]*
+
+> "Compliance: FLAG — FATF jurisdiction match. Risk score: twenty-three. LOW. But the compliance flag overrides the auto-execute gate — so the recommendation is REVIEW."
+
+*[Point at the result card: riskScore field, then recommendation field.]*
+
+> "The system creates Maestro case OT-TRX12345-23 automatically — assigned to the Compliance Officer, SLA sixty minutes."
+
+---
+
+### [0:28 – 0:50] humanReviewPacket — Evidence Bundle
+
+**[SCREEN: Navigate to Cases. Click OT-TRX12345-23.]**
+
+**NARRATION:**
+> "The Compliance Officer opens the case. Everything they need is here — pre-organised by the AI. Compliance flag reason. Optimal FX provider. FX savings four hundred twelve dollars. Liquidity position: sufficient. Covenant status: safe."
+
+*[Scroll slowly through the humanReviewPacket panel.]*
+
+> "No email threads. No spreadsheets. One screen."
+
+**[CLICK: Approve.]**
+
+> "Approved. The Open Cases counter drops to zero."
+
+---
+
+### [0:50 – 1:10] Audit Trail — caseId OT-TRX12345-23
+
+**[SCREEN: Navigate to Audit Trail. Filter by OT-TRX12345-23.]**
+
+**NARRATION:**
+> "Five immutable events — from file upload to case decision. Who, when, what — timestamped to the second."
+
+*[Scroll through the five events: FILE_UPLOADED → PIPELINE_COMPLETE → CASE_CREATED → CASE_UPDATED → CASE_DECISION.]*
+
+> "Basel III, SOX, Bank Secrecy Act compliant. One API call — `GET /api/audit?case_id=OT-TRX12345-23` — returns the complete chain of custody."
+
+---
+
+### [1:10 – 1:25] Close
+
+**[SCREEN: Back to Dashboard — KPIs updated.]**
+
+**NARRATION:**
+> "OmniTreasury AI. Package version one-point-zero-point-five. Verified in UiPath Orchestrator. Eighty-four tests. No API key required. One environment variable away from live Maestro Cases."
+
+*[Hold on dashboard for 2 seconds, then fade to black.]*
+
+---
+
+### Recording Notes (60-90s cut)
+
+- Keep narration cadence slow — judges read and watch simultaneously
+- The 1-second pause after clicking Process is intentional — do not fill it
+- Total target: 75 seconds (shoot for 70–80; 60 is rushed, 90 is the hard limit)
+- Re-take trigger: run `python scripts/reset_demo_data.py` before every take
+
+---
+
+---
+
+## 5-Minute Script (Full Walkthrough)
+
 **UiPath AgentHack 2026 | Target length: 5 minutes**
 
 ---

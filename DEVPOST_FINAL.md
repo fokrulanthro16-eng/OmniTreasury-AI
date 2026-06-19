@@ -20,16 +20,44 @@
 ## GitHub Repository
 
 ```
-https://github.com/YOUR_GITHUB_USERNAME/OmniTreasury_AI
+https://github.com/fokrulanthro16/OmniTreasury_AI
 ```
-
-*(Replace with actual URL after pushing — see GITHUB_PUSH.md)*
 
 ---
 
 ## Demo Video
 
 *(Link to your recorded walkthrough following DEMO_VIDEO_SCRIPT.md)*
+
+---
+
+## The Problem
+
+Enterprise treasury teams process hundreds of cross-border payments daily under a crushing convergence of constraints: real-time sanctions compliance, multi-currency FX optimisation, covenant-aware liquidity management, and explainable risk scoring — all before a payment can legally leave the firm's accounts.
+
+Today, most teams do this with a spreadsheet, an email thread to the CFO, and a prayer that nothing slips through the cracks.
+
+The result: **slow payments, compliance exposure, FX losses from suboptimal routing, and audit trails that exist only in inboxes.** For a mid-market treasury handling £500M annually, even a 0.1% improvement in FX efficiency is worth £500,000. A single missed sanctions hit can cost millions in fines.
+
+The root cause: **no single system connects compliance, FX, liquidity, risk, and human approval into one auditable workflow.** UiPath Orchestrator can trigger automation, but the AI judgment layer and the Maestro Case handoff are missing.
+
+OmniTreasury AI closes that gap.
+
+---
+
+## The Solution
+
+OmniTreasury AI is a five-engine AI pipeline deployed as a FastAPI service, callable directly from UiPath Studio via HTTP Request activity. Each incoming payment runs through:
+
+1. Compliance screening (sanctions + AML)
+2. FX route optimisation (5 providers)
+3. Liquidity position validation
+4. 4-factor risk scoring
+5. Policy-matrix decision → **AUTO_EXECUTE** or **Maestro Case**
+
+Payments that clear all gates execute in under one second with no human touch. Payments that need review automatically create a UiPath Maestro Case with a pre-organised evidence bundle — so the CFO or compliance officer makes the decision with full context, not a forwarded email.
+
+**Verified live in UiPath Orchestrator — Package v1.0.5 — caseId OT-TRX12345-23 — riskScore 23 — recommendation REVIEW.**
 
 ---
 
@@ -94,6 +122,47 @@ Step 3 — Branch: AUTO_EXECUTE | ESCALATE | HARD_REJECT
 Step 4 — Poll GET /api/cases/{id}    → await APPROVED / REJECTED
 Step 5 — GET  /api/audit?case_id=    → full compliance audit chain
 ```
+
+---
+
+## UiPath Tools Used
+
+| UiPath Tool | How OmniTreasury AI Uses It |
+|---|---|
+| **UiPath Orchestrator** | Hosts and schedules the OmniTreasury AI package (v1.0.5). Triggers payment processing jobs. Tracks job state: Successful / Failed / Stopped. |
+| **UiPath Studio — HTTP Request Activity** | Calls OmniTreasury AI REST endpoints (`POST /api/upload`, `POST /api/process-upload`, `GET /api/cases/{id}`, `GET /api/audit`) from within a Studio workflow. |
+| **UiPath Maestro Cases** | Receives escalated payments as structured Cases (caseId, evidence bundle, SLA, assignedRole). Enforces the `OPEN → UNDER_REVIEW → APPROVED/REJECTED → CLOSED` lifecycle. |
+| **UiPath Maestro Human-in-the-Loop** | Routes REVIEW/ESCALATE decisions to the correct approver (CFO, Treasury Manager, Compliance Officer, Legal) with full evidence context pre-loaded. |
+| **UiPath Identity Server (OAuth2)** | `src/integrations/uipath_maestro.py` implements full client-credentials OAuth2 token refresh for live Maestro API calls. Flip `USE_MOCK_MAESTRO=false` to activate. |
+
+**Live Orchestrator Proof — Package 1.0.5:**
+
+```
+Orchestrator Job ID : OT-TRX12345
+Package             : OmniTreasury_AI v1.0.5
+Job State           : Successful
+Case Created        : OT-TRX12345-23
+riskScore           : 23
+recommendation      : REVIEW
+assignedRole        : COMPLIANCE_OFFICER
+Audit Events        : 5 (FILE_UPLOADED → CASE_DECISION)
+```
+
+---
+
+## Demo Flow
+
+**60-second path through the live system:**
+
+1. **UiPath Orchestrator triggers job** — Robot v1.0.5 calls `POST /api/upload` with `OT-TRX12345` payment file
+2. **5-engine pipeline runs** — compliance FLAG detected (FATF jurisdiction), riskScore computed as `23` (LOW)
+3. **Decision engine returns `REVIEW`** — FLAG overrides low risk score per AML Policy AML-07
+4. **Maestro Case created** — `OT-TRX12345-23` opens with full `humanReviewPacket` (fxProvider, fxSavings, liquidityStatus, flagReason)
+5. **Compliance Officer reviews** — sees pre-organised evidence bundle, verifies BIC with correspondent bank
+6. **Case APPROVED** — `CASE_DECISION` event logged with officer name, timestamp, and notes
+7. **Audit trail queried** — `GET /api/audit?case_id=OT-TRX12345-23` returns all 5 events, chain complete
+
+**Dashboard shows:** STP rate updated, Open Cases drops to 0, FX Savings incremented by $412.50.
 
 ---
 

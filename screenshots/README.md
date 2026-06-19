@@ -10,6 +10,19 @@ and referenced in the main [README.md](../README.md).
 
 ## Required Screenshots (for Devpost submission)
 
+### Group A — UiPath Orchestrator Live Proof (Package 1.0.5 / OT-TRX12345-23)
+
+These are the primary AgentHack evidence screenshots. Capture these first.
+
+| Filename | What to capture | Key values to show |
+|---|---|---|
+| `09_orchestrator_job.png` | UiPath Orchestrator web UI — Jobs page showing `OmniTreasury_AI v1.0.5` job with **Successful** status badge | Package: `OmniTreasury_AI`, Version: `1.0.5`, State: `Successful`, Robot: visible |
+| `10_risk_score_review.png` | OmniTreasury AI pipeline result for payment `OT-TRX12345` — JSON or UI card showing the scoring output | `riskScore: 23`, `riskLevel: LOW`, `recommendation: REVIEW`, `complianceDecision: FLAG` |
+| `11_human_review_packet.png` | `humanReviewPacket` section of the OT-TRX12345-23 case — evidence bundle detail panel | `caseId: OT-TRX12345-23`, `assignedRole: COMPLIANCE_OFFICER`, `fxProvider: Deutsche Bank Treasury`, `liquidityStatus: SUFFICIENT` |
+| `12_audit_trail_ot_trx12345.png` | Audit timeline for `OT-TRX12345-23` — all 5 events visible | `FILE_UPLOADED → PIPELINE_COMPLETE → CASE_CREATED → CASE_UPDATED → CASE_DECISION`, actor names, UTC timestamps |
+
+### Group B — Dashboard & Demo Screenshots
+
 | Filename | Page / Feature | What to capture |
 |---|---|---|
 | `01_cfo_command_center.png` | Dashboard | Full dashboard showing STP Rate, FX Savings, Open Cases, Avg Risk Score KPI tiles |
@@ -69,10 +82,14 @@ Press `Win + Shift + S`, select the region, paste into Paint or save directly.
 
 ```
 screenshots/
+├── 09_orchestrator_job.png        ← [PRIMARY] Orchestrator v1.0.5 Successful job
+├── 10_risk_score_review.png       ← [PRIMARY] riskScore 23, recommendation REVIEW
+├── 11_human_review_packet.png     ← [PRIMARY] humanReviewPacket for OT-TRX12345-23
+├── 12_audit_trail_ot_trx12345.png ← [PRIMARY] 5-event audit chain, caseId OT-TRX12345-23
 ├── 01_cfo_command_center.png      ← Dashboard KPIs
 ├── 02_pipeline_result.png         ← 5-engine output, AUTO_EXECUTE
 ├── 03_case_detail.png             ← Maestro Case evidence bundle
-├── 04_audit_trail.png             ← Immutable audit chain
+├── 04_audit_trail.png             ← Immutable audit chain (CASE-DEMO-001)
 ├── 05_explainable_ai.png          ← Risk factor decomposition
 ├── 06_fx_routing_map.png          ← Global Route Intelligence
 ├── 07_maestro_workflow.png        ← 9-step orchestration timeline
