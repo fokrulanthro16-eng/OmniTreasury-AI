@@ -315,7 +315,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full component diagram and data-f
 ### 1. Install dependencies
 
 ```bash
-git clone https://github.com/fokrulanthro16/OmniTreasury_AI.git
+git clone https://github.com/fokrulanthro16-eng/OmniTreasury-AI.git
 cd OmniTreasury_AI
 
 python -m venv .venv
