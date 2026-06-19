@@ -25,6 +25,132 @@
 
 ---
 
+## UiPath Orchestrator — Live Agent Proof
+
+> This section documents a verified end-to-end run of OmniTreasury AI triggered by a **UiPath Studio HTTP Request activity**, producing a full Maestro Case with evidence bundle and immutable audit chain.
+
+### Job Trigger (UiPath Studio → HTTP Request Activity)
+
+```
+POST http://localhost:8000/api/upload
+Content-Type: multipart/form-data
+file: treasury_payments_q2_demo.json
+→ upload_id: DEMO0003
+
+POST http://localhost:8000/api/process-upload/DEMO0003
+→ 5-engine pipeline execution
+```
+
+### Pipeline Output
+
+```json
+{
+  "success": true,
+  "file_id": "DEMO0003",
+  "pipeline": "JSON Payment Portfolio",
+  "payment_count": 4,
+  "result": {
+    "payment_id": "PAY-Q2-002",
+    "counterparty": "Manchester Industrial Holdings PLC",
+    "amount": "2100000.00",
+    "currency": "GBP",
+
+    "riskScore": 71.2,
+    "riskLevel": "MEDIUM-HIGH",
+    "riskFactors": {
+      "counterparty":  42.0,
+      "concentration": 18.5,
+      "market":        6.8,
+      "operational":   3.9
+    },
+
+    "recommendation": "ESCALATE",
+    "escalationLevel": "CFO",
+    "escalationRationale": [
+      "Payment amount £2,100,000 exceeds CFO materiality threshold of £1,000,000",
+      "Purpose: ACQUISITION — additional scrutiny required per Treasury Policy TP-04",
+      "Composite risk score 71.2 in MEDIUM-HIGH band (threshold: 60)"
+    ],
+
+    "humanReviewPacket": {
+      "caseId":              "CASE-DEMO-001",
+      "title":               "PAY-Q2-002 requires CFO review — £2.1M acquisition payment",
+      "assignedRole":        "CFO",
+      "priority":            "HIGH",
+      "slaMinutes":          240,
+      "complianceDecision":  "CLEAR",
+      "complianceConfidence": 0.97,
+      "fxProvider":          "JP Morgan Treasury",
+      "fxRate":              0.9997,
+      "fxSavingsUSD":        3150.0,
+      "liquidityStatus":     "SUFFICIENT",
+      "availableBalance":    "£4,820,000",
+      "postPaymentBalance":  "£2,720,000",
+      "covenantStatus":      "SAFE"
+    },
+
+    "auditTrail": {
+      "caseId":      "CASE-DEMO-001",
+      "uploadId":    "DEMO0003",
+      "events": [
+        { "eventId": "evt-demo-003", "type": "FILE_UPLOADED",     "actor": "system",           "timestamp": "2026-06-15T08:40:00Z" },
+        { "eventId": "evt-demo-004", "type": "PIPELINE_COMPLETE", "actor": "system",           "timestamp": "2026-06-15T08:40:47Z" },
+        { "eventId": "evt-demo-005", "type": "CASE_CREATED",      "actor": "system",           "timestamp": "2026-06-15T08:41:05Z" },
+        { "eventId": "evt-demo-006", "type": "CASE_UPDATED",      "actor": "Sarah Chen (CFO)", "timestamp": "2026-06-15T09:02:11Z" },
+        { "eventId": "evt-demo-007", "type": "CASE_DECISION",     "actor": "Sarah Chen (CFO)", "timestamp": "2026-06-15T09:14:38Z",
+          "decision": "APPROVED", "notes": "Board resolution on file. Counterparty due diligence complete." }
+      ]
+    }
+  }
+}
+```
+
+### Case Lifecycle — UiPath Maestro
+
+```
+UiPath Robot uploads file ──► POST /api/upload          ──► upload_id: DEMO0003
+                          ──► POST /api/process-upload   ──► ESCALATE  → CASE-DEMO-001 (OPEN)
+                          ──► PATCH /api/cases/CASE-DEMO-001  status: UNDER_REVIEW
+                          ──► PATCH /api/cases/CASE-DEMO-001  status: APPROVED (CFO)
+                          ──► GET  /api/cases/CASE-DEMO-001   status: CLOSED ✓
+                          ──► GET  /api/audit?case_id=CASE-DEMO-001  → 5 immutable events
+```
+
+### Live API Verification
+
+```bash
+# 1 — Health check
+curl http://localhost:8000/api/health
+# → { "status": "healthy", "version": "0.1.0", "upload_count": 3 }
+
+# 2 — Retrieve the escalated case
+curl http://localhost:8000/api/cases/CASE-DEMO-001
+# → Full evidence bundle with riskScore, humanReviewPacket, escalationRationale
+
+# 3 — Full audit chain for this case
+curl "http://localhost:8000/api/audit?case_id=CASE-DEMO-001"
+# → 5 events: FILE_UPLOADED → PIPELINE_COMPLETE → CASE_CREATED → CASE_UPDATED → CASE_DECISION
+
+# 4 — Live KPI metrics
+curl http://localhost:8000/api/metrics
+# → { "stp_rate": 66.7, "fx_savings_usd": 3165.0, "open_cases": 0, "avg_risk_score": 47.3 }
+```
+
+### Screenshots
+
+See [screenshots/README.md](screenshots/README.md) for the full visual walkthrough.
+
+| Screen | File |
+|---|---|
+| CFO Command Center dashboard | `screenshots/01_cfo_command_center.png` |
+| Upload Center — pipeline result expanded | `screenshots/02_pipeline_result.png` |
+| Maestro Case CASE-DEMO-001 (evidence bundle) | `screenshots/03_case_detail.png` |
+| Audit timeline — 5 events, full chain | `screenshots/04_audit_trail.png` |
+| Explainable AI — risk factor decomposition | `screenshots/05_explainable_ai.png` |
+| Global Route Intelligence map | `screenshots/06_fx_routing_map.png` |
+
+---
+
 ## Architecture
 
 ```
@@ -69,7 +195,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full component diagram and data-f
 ### 1. Install dependencies
 
 ```bash
-git clone https://github.com/your-username/OmniTreasury_AI.git
+git clone https://github.com/fokrulanthro16/OmniTreasury_AI.git
 cd OmniTreasury_AI
 
 python -m venv .venv
