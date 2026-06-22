@@ -25,6 +25,88 @@
 
 ---
 
+## UiPath Components Used
+
+| Component | Role in OmniTreasury AI |
+|---|---|
+| **UiPath Orchestrator** | Hosts and executes package `OmniTreasury_AI` v1.0.5 via Robot `OmniTreasury-Robot-01`. Verified successful job run documented below. |
+| **UiPath Maestro Cases** | Auto-created on every `ESCALATE` decision with a full evidence bundle. Full lifecycle managed via REST: `OPEN → UNDER_REVIEW → APPROVED/REJECTED → CLOSED`. |
+| **UiPath Studio — HTTP Request** | Two-activity workflow: `POST /api/upload` (file ingestion) followed by `POST /api/process-upload/{id}` (5-engine pipeline trigger). |
+| **UiPath Studio — Python Script** | Embeds `uipath_process_payment()` from `main.py` directly inside a Studio sequence for ERP-triggered workflows. |
+| **UiPath Robot** | `OmniTreasury-Robot-01` executes Orchestrator jobs, triggers uploads, and manages the Maestro case polling loop. |
+
+---
+
+## Agent Type
+
+**Both — Coded Agents and Low-code Agents**
+
+| Type | Implementation |
+|---|---|
+| **Coded Agents** | Six Python agents built with the CrewAI framework (`src/agents/`): `ComplianceAuditor`, `ForexStrategist`, `LiquidityBalancer`, `RiskIntelligence`, `DecisionOrchestrator`, `DocumentIntelligence`. Can be backed by Claude or GPT-4o via `.env`. |
+| **Low-code Agents** | UiPath Studio sequences using HTTP Request and Python Script activities to trigger the pipeline, capture decisions, and route Maestro Cases — no Python coding required in the Studio layer. |
+
+The deterministic engine layer runs without any LLM API key. CrewAI agents are an optional overlay — add an `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` to `.env` and uncomment `crewai` in `requirements.txt` to enable full agentic mode.
+
+---
+
+## Judge Setup — Step-by-Step
+
+> **Time: ~5 minutes from clone to live demo.** No UiPath credentials or API keys required.
+> See also [QUICK_START.md](QUICK_START.md) and [JUDGING_GUIDE.md](JUDGING_GUIDE.md).
+
+**1. Clone and enter the repository**
+
+```bash
+git clone https://github.com/fokrulanthro16-eng/OmniTreasury-AI.git
+cd OmniTreasury-AI
+```
+
+**2. Create a virtual environment**
+
+```bash
+# Windows
+python -m venv .venv && .venv\Scripts\activate
+
+# macOS / Linux
+python -m venv .venv && source .venv/bin/activate
+```
+
+**3. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Copy the environment file (no edits needed for the demo)**
+
+```bash
+cp .env.example .env
+```
+
+**5. Seed demo data**
+
+```bash
+python scripts/reset_demo_data.py
+```
+
+**6. Start the application**
+
+```bash
+python -m uvicorn src.web.app:app --reload
+```
+
+Open **http://localhost:8000**. The dashboard populates immediately with live KPIs from the seeded data.
+
+**7. Verify (optional)**
+
+```bash
+pytest tests/ -v          # 84 tests — all pass
+curl http://localhost:8000/api/health
+```
+
+---
+
 ## UiPath Orchestrator — Live Agent Proof
 
 > This section documents verified end-to-end runs of OmniTreasury AI triggered by **UiPath Studio HTTP Request activities**, producing full Maestro Cases with evidence bundles and immutable audit chains.
